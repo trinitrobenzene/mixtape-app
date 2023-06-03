@@ -3,12 +3,11 @@ import React from 'react'
 
 const Header = () => {
     return (
-        <header style={{ background: 'silver', padding: '12px' }}>
-            Header
+        <header className='p-4 bg-gray-300'>
+            <Link href='/'>Mixtape</Link>
             &nbsp;
-            <Link href='/user'>User</Link>
+            <Link href='/songlist'>SongList</Link>
             &nbsp;
-            <Link href='/'>Home</Link>
         </header>
     )
 }
