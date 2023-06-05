@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 const Footer = () => {
     return (
-        <footer style={{background:'silver', padding:'12px'}}>
+        <footer className="py-4 bg-main text-white">
             Footer
         </footer>
     )
