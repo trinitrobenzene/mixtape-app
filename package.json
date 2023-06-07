@@ -23,6 +23,8 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "daisyui": "^3.0.3"
+    "daisyui": "^3.0.3",
+    "react-bootstrap-icons": "^1.10.3",
+    "sass": "^1.62.1"
   }
 }
