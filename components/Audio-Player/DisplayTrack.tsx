@@ -1,4 +1,4 @@
-import { BsMusicNoteBeamed } from "react-icons/bs";
+import { ArrowClockwise } from "react-bootstrap-icons";
 import Image from "next/image";
 
 const DisplayTrack = ({
@@ -29,7 +29,7 @@ const DisplayTrack = ({
           ) : (
             <div className="icon-wrapper">
               <span className="audio-icon">
-                <BsMusicNoteBeamed />
+                <ArrowClockwise />
               </span>
             </div>
           )}
