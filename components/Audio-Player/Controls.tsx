@@ -82,25 +82,25 @@ const Controls = ({
   }, [volume, audioRef, muteVolume]);
 
   return (
-    <div className="controls-wrapper">
-      <div className="controls">
-        <button onClick={handlePrevious}>
+    <div className="flex justify-between items-center mt-2.5">
+      <div className="flex justify-between p-5">
+        <button className="p-5" onClick={handlePrevious}>
           <SkipStartFill />
         </button>
-        <button onClick={skipBackward}>
+        <button className="p-5" onClick={skipBackward}>
           <SkipBackwardFill />
         </button>
-        <button onClick={togglePlayPause}>
+        <button className="p-5" onClick={togglePlayPause}>
           {isPlaying ? <PauseFill /> : <PlayFill />}
         </button>
-        <button onClick={skipForward}>
+        <button className="p-5" onClick={skipForward}>
           <SkipForwardFill />
         </button>
-        <button onClick={handleNext}>
+        <button className="p-5" onClick={handleNext}>
           <SkipEndFill />
         </button>
       </div>
-      <div className="volume">
+      <div className="flex items-center">
         <button onClick={() => setMuteVolume((prev) => !prev)}>
           {muteVolume || volume < 5 ? (
             <VolumeMuteFill />

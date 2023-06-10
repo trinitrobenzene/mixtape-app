@@ -30,8 +30,8 @@ const AudioPlayer = () => {
 
   return (
     <>
-      <div className="audio-player">
-        <div className="inner">
+      <div className="bg-white">
+        <div className="max-w-7xl m-auto">
           <DisplayTrack
             {...{
               currentTrack,
