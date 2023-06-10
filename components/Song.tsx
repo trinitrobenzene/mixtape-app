@@ -8,7 +8,7 @@ interface Props {
 
 const Song = ({ item: track, itemIndex }: Props) => {
   return (
-    <div className="grid grid-cols-2 text-gray-500 px-5 py-4 hover:bg-white rounded-lg cursor-pointer">
+    <div className="grid grid-cols-2 text-gray-500 px-5 py-4 hover:bg-gray-200 rounded-lg cursor-pointer">
       <div className="flex items-center space-x-4">
         <p>{itemIndex + 1}</p>
         <div>

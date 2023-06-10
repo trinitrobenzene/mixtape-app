@@ -4,41 +4,33 @@ import Image from "next/image";
 // css
 import "../../styles/index.css";
 import "../../styles/customize-progress-bar.css";
-import img from "../../data-test/sample.jpeg";
+import img from "../../data-test/avatars/image-juliusomo.png";
+import { People, Cassette } from "react-bootstrap-icons";
+import Comments from "@/components/Comments/Comments";
 
 const SongPage = () => {
   return (
-    <div className="grid grid-rows-2 ">
-      <div>
+    <div className="grid grid-rows-1 ">
+      <div className="flex flex-col bg-white m-3 py-6 rounded-lg space-y-3 relative h-fit">
         <AudioPlayer></AudioPlayer>
       </div>
       <div>
-        <div className="grid grid-rows-3 grid-flow-col gap-4">
-          <div className="row-span-3 p-8 bg-white">
+        <div className="grid grid-cols-2">
+          <div className="flex flex-col bg-white m-3 py-6 rounded-lg space-y-3 relative h-fit">
             <div className="flex justify-center p-8">
-              <Image
-                src={img}
-                alt="track cover"
-                width={100}
-                height={100}
-                className="rounded-full "
-              />
+              <Image src={img} alt="track cover" width={100} height={100} />
             </div>
             <span className="flex justify-center"> Nguyen Huu Thang</span>
             <div className="flex justify-around grid-cols-2">
               <div>
-                <i className="bi bi-people"></i> 123
+                <People width={150} />
               </div>
-              <div>02</div>
+              <Cassette width={150} />
             </div>
           </div>
-          <div className="col-span-2 ...">
-            <div className="flex">
-              <div className="flex-none ...">01</div>
-              <div className="flex-1 w-64 ...">02</div>
-            </div>
+          <div>
+            <Comments></Comments>
           </div>
-          <div className="row-span-2 col-span-2 ...">03</div>
         </div>
       </div>
     </div>

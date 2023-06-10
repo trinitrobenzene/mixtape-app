@@ -2,15 +2,16 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 // icons
 import {
-  IoPlayBackSharp,
-  IoPlayForwardSharp,
-  IoPlaySkipBackSharp,
-  IoPlaySkipForwardSharp,
-  IoPlaySharp,
-  IoPauseSharp,
-} from "react-icons/io5";
-
-import { IoMdVolumeHigh, IoMdVolumeOff, IoMdVolumeLow } from "react-icons/io";
+  SkipEndFill,
+  SkipStartFill,
+  SkipForwardFill,
+  SkipBackwardFill,
+  PlayFill,
+  PauseFill,
+  VolumeDownFill,
+  VolumeUpFill,
+  VolumeMuteFill,
+} from "react-bootstrap-icons";
 
 const Controls = ({
   audioRef,
@@ -84,30 +85,29 @@ const Controls = ({
     <div className="controls-wrapper">
       <div className="controls">
         <button onClick={handlePrevious}>
-          <IoPlaySkipBackSharp />
+          <SkipStartFill />
         </button>
         <button onClick={skipBackward}>
-          <IoPlayBackSharp />
+          <SkipBackwardFill />
         </button>
-
         <button onClick={togglePlayPause}>
-          {isPlaying ? <IoPauseSharp /> : <IoPlaySharp />}
+          {isPlaying ? <PauseFill /> : <PlayFill />}
         </button>
         <button onClick={skipForward}>
-          <IoPlayForwardSharp />
+          <SkipForwardFill />
         </button>
         <button onClick={handleNext}>
-          <IoPlaySkipForwardSharp />
+          <SkipEndFill />
         </button>
       </div>
       <div className="volume">
         <button onClick={() => setMuteVolume((prev) => !prev)}>
           {muteVolume || volume < 5 ? (
-            <IoMdVolumeOff />
+            <VolumeMuteFill />
           ) : volume < 40 ? (
-            <IoMdVolumeLow />
+            <VolumeDownFill />
           ) : (
-            <IoMdVolumeHigh />
+            <VolumeUpFill />
           )}
         </button>
         <input

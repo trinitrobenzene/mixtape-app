@@ -36,6 +36,20 @@ export const tracks = [
     author: "Son Tung",
     thumbnail: st,
   },
+  {
+    id: 6,
+    title: "Anh em",
+    src: "https://audioplayer.madza.dev/Madza-Chords_of_Life.mp3",
+    author: "Ronaldo",
+    thumbnail: st,
+  },
+  {
+    id: 7,
+    title: "Song chet co nhau",
+    src: "https://audioplayer.madza.dev/Madza-Chords_of_Life.mp3",
+    author: "Messi",
+    thumbnail: st,
+  },
 
   // ...
 ];
