@@ -22,21 +22,23 @@ const DisplayTrack = ({
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="audio-info">
-        <div className="audio-image">
+      <div className="grid gap-4">
+        <div className="w-full md:w-auto">
           {currentTrack.thumbnail ? (
             <Image src={currentTrack.thumbnail || ""} alt="track cover" />
           ) : (
-            <div className="icon-wrapper">
-              <span className="audio-icon">
+            <div className="flex justify-center items-center max-h-fit">
+              <span className="flex justify-center items-center bg-slate-300">
                 <ArrowClockwise />
               </span>
             </div>
           )}
         </div>
-        <div className="text">
-          <p className="title">{currentTrack.title}</p>
-          <p>{currentTrack.author}</p>
+        <div className="text-left text-black">
+          <p className="text-left p-2 text-black font-bold text-2xl">
+            {currentTrack.title}
+          </p>
+          <p className="text-left">{currentTrack.author}</p>
         </div>
       </div>
     </div>

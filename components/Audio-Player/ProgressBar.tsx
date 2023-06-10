@@ -21,7 +21,7 @@ const ProgressBar = ({
 
   return (
     <div className="flex justify-end items-center pr-5 space-x-3 md:space-x-4">
-      <span className="time current">{formatTime(timeProgress)}</span>
+      <span className="bg-white">{formatTime(timeProgress)}</span>
       <input
         type="range"
         ref={progressBarRef}
@@ -31,7 +31,7 @@ const ProgressBar = ({
         }}
         onChange={handleProgressChange}
       />
-      <span className="time">{formatTime(duration)}</span>
+      <span className="bg-white">{formatTime(duration)}</span>
     </div>
   );
 };

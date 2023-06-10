@@ -22,7 +22,7 @@ const DisplayTrackInPlaybar = ({
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="audio-info">
+      <div className="grid gap-4">
         <div>
           {currentTrack.thumbnail ? (
             <Image
@@ -33,15 +33,17 @@ const DisplayTrackInPlaybar = ({
               className="rounded-full"
             />
           ) : (
-            <div className="icon-wrapper">
-              <span className="audio-icon">
+            <div className="flex justify-center items-center max-h-fit">
+              <span className="flex justify-center items-center bg-slate-300">
                 <ArrowClockwise />
               </span>
             </div>
           )}
         </div>
-        <div className="text">
-          <p className="title">{currentTrack.title}</p>
+        <div className="text-left text-black">
+          <p className="text-left p-2 text-black font-bold text-2xl">
+            {currentTrack.title}
+          </p>
           <p>{currentTrack.author}</p>
         </div>
       </div>
