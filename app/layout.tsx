@@ -1,8 +1,10 @@
 import Navbar from '@/components/Navbar'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
+// import Footer from '@/components/Footer'
+import Header from '@/components/Header'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import Providers from '@/src/redux/provider'
+import Playbar from '@/components/Playbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,16 +20,19 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<Header />
-				<div className='relative'>
-					<Navbar />
-					<main>
-						{children}
-						{/* <Footer /> */}
-					</main>
-				</div>
-			</body>
+			<Providers>
+				<body className={inter.className}>
+					<Header />
+					<div className='relative'>
+						<Navbar />
+						<main className='active'>
+							{children}
+							{/* <Footer /> */}
+						</main>
+					</div>
+					<Playbar />
+				</body>
+			</Providers>
 		</html>
 	)
 }

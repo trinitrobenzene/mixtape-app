@@ -1,7 +1,12 @@
+'use client'
+import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
 import Link from 'next/link'
 import React from 'react'
 
 const Navbar = () => {
+	const dispatch = useAppDispatch();
+    const { user } = useAppSelector(_ => _)
+	
 	const links = [
 		{
 			icon: 'icon-1',
@@ -21,7 +26,7 @@ const Navbar = () => {
 		{
 			icon: 'icon-4',
 			name: 'Upload Song',
-			url: '/'
+			url: '/upload'
 		},
 		{
 			icon: 'icon-5',
@@ -34,6 +39,10 @@ const Navbar = () => {
 			url: '/'
 		}
 	]
+
+	if (!user.logged)
+        return <></>;
+
 	return (
 		<nav className='nav'>
 			<h1 className='text-2xl text-center'>
