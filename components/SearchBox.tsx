@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
-
+import {Search} from 'react-bootstrap-icons'
 interface searchProps {
     w?: string | number;
     onSearch: Function;
@@ -15,7 +15,7 @@ const SearchBox = (props: searchProps) => {
     };
     return (
         <form
-            className="bg-white rounded px-2 py-1 flex"
+            className="bg-white rounded-lg px-2 py-1 flex"
             onSubmit={handleSubmit}
             style={{ width: props.w ?? '300px' }}
         >
@@ -23,7 +23,9 @@ const SearchBox = (props: searchProps) => {
                 className="bg-transparent flex-grow focus:border-0"
                 ref={refInput}
             />
-            <button>Search</button>
+            <button type='submit'>
+                <Search size={20} color='gray'/>
+            </button>
         </form>
     );
 };
