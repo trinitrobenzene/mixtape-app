@@ -2,9 +2,9 @@
 import { tracks } from "@/data-test/tracks";
 import Image from "next/image";
 import { useState, useRef } from "react";
-import Controls from "./Audio-Player/Controls";
-import ProgressBar from "./Audio-Player/ProgressBar";
-import DisplayTrackInPlaybar from "./Audio-Player/DisplayTrackInPlaybar";
+import Controls from "../Audio-Player/Controls";
+import ProgressBar from "../Audio-Player/ProgressBar";
+import DisplayTrackInPlaybar from "../Audio-Player/DisplayTrackInPlaybar";
 
 const Playbar = () => {
   const [trackIndex, setTrackIndex] = useState(0);
@@ -33,11 +33,11 @@ const Playbar = () => {
   };
   return (
     <div 
-      className="bg-main text-white grid grid-flow-col px-2 md:px-8 auto-cols-1" 
+      className="bg-main text-white grid grid-flow-col items-center px-2 md:px-8 auto-cols-1" 
       style={{...playbarStyle, position:'fixed'}}
     >
       {/* Left */}
-      <div className="row-span-3 auto-cols-1 py-8">
+      <div className="row-span-3 auto-cols-1">
         <DisplayTrackInPlaybar
           {...{
             currentTrack,

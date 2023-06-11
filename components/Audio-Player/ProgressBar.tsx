@@ -20,7 +20,7 @@ const ProgressBar = ({
   };
 
   return (
-    <div className="flex justify-end items-center pr-5 space-x-3 md:space-x-4">
+    <div className="flex pb-2 space-x-3 md:space-x-4">
       <span className="">{formatTime(timeProgress)}</span>
       <input
         type="range"
@@ -28,6 +28,7 @@ const ProgressBar = ({
         defaultValue="0"
         style={{
           background: `linear-gradient(to right, #600f78 ${timeProgress}%, #ccc ${timeProgress}%)`,
+          flexGrow: 1
         }}
         onChange={handleProgressChange}
       />

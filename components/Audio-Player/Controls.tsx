@@ -82,32 +82,32 @@ const Controls = ({
   }, [volume, audioRef, muteVolume]);
 
   return (
-    <div className="flex justify-between items-center mt-2.5">
-      <div className="flex justify-between p-5">
-        <button className="p-5" onClick={handlePrevious}>
-          <SkipStartFill />
+    <div className="flex justify-between items-center py-1 -ml-4">
+      <div className="flex justify-between">
+        <button className="p-4" onClick={handlePrevious}>
+          <SkipStartFill size={24}/>
         </button>
-        <button className="p-5" onClick={skipBackward}>
-          <SkipBackwardFill />
+        <button className="p-4" onClick={skipBackward}>
+          <SkipBackwardFill size={24}/>
         </button>
-        <button className="p-5" onClick={togglePlayPause}>
-          {isPlaying ? <PauseFill /> : <PlayFill />}
+        <button className="p-4" onClick={togglePlayPause}>
+          {isPlaying ? <PauseFill size={24}/> : <PlayFill size={24}/>}
         </button>
-        <button className="p-5" onClick={skipForward}>
-          <SkipForwardFill />
+        <button className="p-4" onClick={skipForward}>
+          <SkipForwardFill size={24}/>
         </button>
-        <button className="p-5" onClick={handleNext}>
-          <SkipEndFill />
+        <button className="p-4" onClick={handleNext}>
+          <SkipEndFill size={24}/>
         </button>
       </div>
       <div className="flex items-center">
         <button onClick={() => setMuteVolume((prev) => !prev)}>
           {muteVolume || volume < 5 ? (
-            <VolumeMuteFill />
+            <VolumeMuteFill size={24}/>
           ) : volume < 40 ? (
-            <VolumeDownFill />
+            <VolumeDownFill size={24}/>
           ) : (
-            <VolumeUpFill />
+            <VolumeUpFill size={24}/>
           )}
         </button>
         <input

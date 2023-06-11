@@ -22,7 +22,7 @@ const DisplayTrackInPlaybar = ({
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <div>
           {currentTrack.thumbnail ? (
             <Image
@@ -41,9 +41,9 @@ const DisplayTrackInPlaybar = ({
           )}
         </div>
         <div className="text-left">
-          <p className="text-left py-2 font-bold text-2xl">
+          <h4 className="font-bold">
             {currentTrack.title}
-          </p>
+          </h4>
           <p>{currentTrack.author}</p>
         </div>
       </div>
