@@ -6,7 +6,7 @@ import { Inter } from 'next/font/google'
 import Providers from '@/src/redux/provider'
 import Playbar from '@/components/Playbar'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
 	title: 'Mixtape',

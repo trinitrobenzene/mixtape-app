@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "data-test/tracks.js", "app/songpage/page.js", "components/Audio-Player/ProgressBar.js", "components/Audio-Player/Controls.js", "components/Audio-Player/AudioPlayer.js", "components/Audio-Player/DisplayTrack.js"],
   "exclude": ["node_modules"]
 }

@@ -1,5 +1,4 @@
 'use client';
-
 import Link from 'next/link';
 import React, { useRef } from 'react';
 import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
@@ -19,6 +18,7 @@ const Header = () => {
     }
 
     return (
+<<<<<<< HEAD
         /**
          * Cần sửa user.logged để lấy lại trạng thái đúng
          */
@@ -41,6 +41,18 @@ const Header = () => {
             </div>
         </header>
     );
+=======
+    <header className="p-4 bg-gray-300">
+		<SearchBox w={400} onSearch={onSearch} />
+      <Link href="/">Mixtape</Link>
+      &nbsp;
+      <Link href="/songlist">SongList</Link>
+      &nbsp;
+      <Link href="/songpage">SongPage</Link>
+      &nbsp;
+    </header>
+  );
+>>>>>>> 21112ee156d55d6c89217a82a8b0f27419ebaa12
 };
 
 export default Header;
