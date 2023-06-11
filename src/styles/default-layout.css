@@ -13,7 +13,7 @@
 
     main {
         @apply absolute top-[72px] left-0 right-0 bottom-0 overflow-hidden overflow-y-auto ;
-        height: calc(100vh - 72px);
+        height: calc(100vh - 210px);
     }
 
     main.active {

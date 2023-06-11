@@ -5,7 +5,7 @@ export default class Track {
     author: string;
     image: string;
     audio: string;
-    length_time: 0;
+    length_time: number;
     number_of_plays: number;
     number_of_likes: number;
     number_of_comments: number;

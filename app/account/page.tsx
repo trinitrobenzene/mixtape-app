@@ -20,8 +20,10 @@ const Account = () => {
             <div className='p-4 w-3/5 m-auto grid grid-cols-3'>
                 <div className='col-span-1 bg-purple-600 p-6'>
                     <h1>Welcome to Mixtape</h1>
-                    <p className='py-4'>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Velit placeat cumque modi repudiandae maiores</p>
+                    <p className='py-4'>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Velit placeat cumque modi repudiandae maiores
+                    </p>
                     <button className="btn btn-primary rounded-3xl">Read more</button>
                 </div>
                 <div className='col-span-2 p-6 bg-white'>

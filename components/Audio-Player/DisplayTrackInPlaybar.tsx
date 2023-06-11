@@ -22,7 +22,7 @@ const DisplayTrackInPlaybar = ({
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="grid gap-4">
+      <div className="flex gap-4">
         <div>
           {currentTrack.thumbnail ? (
             <Image
@@ -40,8 +40,8 @@ const DisplayTrackInPlaybar = ({
             </div>
           )}
         </div>
-        <div className="text-left text-black">
-          <p className="text-left p-2 text-black font-bold text-2xl">
+        <div className="text-left">
+          <p className="text-left py-2 font-bold text-2xl">
             {currentTrack.title}
           </p>
           <p>{currentTrack.author}</p>
