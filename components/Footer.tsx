@@ -1,12 +1,11 @@
-import React from "react";
-import AudioPlayer from "./Audio-Player/AudioPlayer";
+import React from 'react';
 
 const Footer = () => {
-  return (
-    <footer style={{ background: "silver", padding: "12px" }}>
-      <AudioPlayer />
-    </footer>
-  );
-};
+    return (
+        <footer className="py-4 bg-main text-white">
+            Footer
+        </footer>
+    )
+}
 
 export default Footer;

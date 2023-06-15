@@ -11,6 +11,12 @@ const Playbar = () => {
   const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
   const [timeProgress, setTimeProgress] = useState(0);
   const [duration, setDuration] = useState(0);
+  const playbarStyle = {
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+  };
 
   // reference
   const audioRef = useRef();
@@ -26,7 +32,10 @@ const Playbar = () => {
     }
   };
   return (
-    <div className="bg-fuchsia-800 grid grid-flow-col px-2 md:px-8 auto-cols-1">
+    <div 
+      className="bg-main text-white grid grid-flow-col px-2 md:px-8 auto-cols-1" 
+      style={{...playbarStyle, position:'fixed'}}
+    >
       {/* Left */}
       <div className="row-span-3 auto-cols-1 py-8">
         <DisplayTrackInPlaybar

@@ -1,0 +1,16 @@
+/* remove default scrollbar */
+#element::-webkit-scrollbar {
+    display: none;
+}
+
+/* Keep text fit in one line */
+.garage-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Remove border when focus input and textarea */
+textarea:focus, input:focus{
+    outline: none;
+}

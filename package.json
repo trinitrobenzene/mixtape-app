@@ -26,6 +26,13 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "daisyui": "^3.0.3"
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.4.0",
+    "daisyui": "^3.0.3",
+    "next-redux-wrapper": "^8.1.0",
+    "react-bootstrap-icons": "^1.10.3",
+    "react-dropzone": "^14.2.3",
+    "react-redux": "^8.0.7",
+    "sass": "^1.62.1"
   }
 }
