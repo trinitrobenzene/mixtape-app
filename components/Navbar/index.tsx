@@ -54,10 +54,6 @@ const Navbar = () => {
         },
     ];
 
-    useEffect(() => {
-        console.log(user.logged);
-    }, [user.logged]);
-
     if (!user.logged) return <></>;
 
     return (
@@ -72,6 +68,7 @@ const Navbar = () => {
                             activeItem === i ? 'text-blue-300' : ''
                         } pb-3 flex gap-3 items-center hover:underline`}
                         onClick={() => setActiveItem(i)}
+                        shallow
                     >
                         {link.icon}
                         {link.name}

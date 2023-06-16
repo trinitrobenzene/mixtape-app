@@ -5,8 +5,7 @@ import Playbar from './Playbar';
 
 const IndexPlaybar = () => {
     const { user } = useAppSelector(_ => _);
-    // return !user.logged ? <></> : <Playbar />;
-    return <div>Hello</div>
+    return !user.logged ? <></> : <Playbar />;
 };
 
 export default IndexPlaybar;
