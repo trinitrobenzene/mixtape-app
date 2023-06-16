@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from '@/src/styles/upload.module.scss';
 import { X } from 'react-bootstrap-icons';
-import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-import { upload } from '@/src/redux/features/files/Audio';
-import { increment } from '@/src/redux/features/Counter';
 
-const Audio = ({ next }: { next: Function }) => {
-    const appFiles = useAppSelector(_ => _.audio.audioList);
-    const [myFiles, setMyFiles] = useState(appFiles.files);
-    const dispatch = useAppDispatch();
-    const [files, setFiles] = useState<FileList>();
+interface eProps {
+    callback: Function;
+    files: FileList | undefined;
+    setFiles: Function;
+}
+
+const Audio = (props: eProps) => {
+    const { files, setFiles, callback } = props;
     const filesRef = useRef<HTMLInputElement>(null);
 
     const removeFile = (i: number) => {
@@ -44,8 +44,7 @@ const Audio = ({ next }: { next: Function }) => {
                     return;
                 }
             }
-            dispatch(upload(input));
-            setMyFiles(input);
+            setFiles(input);
         }
     };
 
@@ -53,7 +52,7 @@ const Audio = ({ next }: { next: Function }) => {
         event.preventDefault();
         console.log(files);
         // if files is not null, go to step 1.
-        if (files) next();
+        if (files) callback(1);
     };
 
     return (
@@ -86,8 +85,8 @@ const Audio = ({ next }: { next: Function }) => {
             </p>
             <div className={style.fileszone}>
                 <ol className="list-decimal">
-                    {myFiles.length > 0 &&
-                        Array.from(myFiles).map((file, i) => (
+                    {files &&
+                        Array.from(files).map((file, i) => (
                             <li key={i}>
                                 {file.name}
                                 <button

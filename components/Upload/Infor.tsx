@@ -1,8 +1,23 @@
 import Track from '@/src/models/Track';
-import React, { useState } from 'react';
+import { File } from 'buffer';
+import React, { useEffect, useState } from 'react';
 
-const Infor = ({ prev }: { prev: Function }) => {
+interface eProps {
+    callback: Function;
+    files: FileList | undefined;
+    setFiles: Function;
+}
+
+const Infor = ({ callback, files, setFiles }: eProps) => {
     const [tracks, setTracks] = useState<Track>(new Track());
+    const [preview, setPreview] = useState<any>();
+
+    useEffect(() => {
+        // clear template url image if user change their avatar
+        return () => {
+            preview && URL.revokeObjectURL(preview.preview);
+        };
+    }, [preview]);
 
     const onChange = (e: React.SyntheticEvent) => {
         const { name, value } = e.target as HTMLInputElement;
@@ -16,6 +31,14 @@ const Infor = ({ prev }: { prev: Function }) => {
 
     const onSubmit = () => {
         console.log(tracks);
+        console.log(files);
+        console.log(preview);
+    };
+
+    const onChangePreview = (e: React.BaseSyntheticEvent) => {
+        const avatar = e.target.files[0];
+        avatar.preview = URL.createObjectURL(avatar);
+        setPreview(avatar);
     };
 
     return (
@@ -29,6 +52,15 @@ const Infor = ({ prev }: { prev: Function }) => {
                         onChange={onChange}
                         name="title"
                         className="input input-bordered input-sm w-full"
+                    />
+                </div>
+                <div className="my-6">
+                    <label htmlFor="avatar">Avatar</label>
+                    {preview && <img src={preview.preview} width={150} />}
+                    <input
+                        type="file"
+                        name="avatar"
+                        onChange={onChangePreview}
                     />
                 </div>
                 <div className="my-6">
@@ -70,7 +102,7 @@ const Infor = ({ prev }: { prev: Function }) => {
                 </div>
             </div>
             <div className="flex gap-4 justify-end">
-                <button className="btn" onClick={()=>prev()}>
+                <button className="btn" onClick={() => callback(0)}>
                     Cancel
                 </button>
                 <button onClick={onSubmit} className="btn btn-success">

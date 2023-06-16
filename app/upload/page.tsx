@@ -5,12 +5,19 @@ import { useState } from 'react';
 
 const UploadPage = () => {
     const [stage, setStage] = useState(0);
+    const [files, setFiles] = useState<FileList>();
+
+    const props = {
+        callback: setStage,
+        files,
+        setFiles,
+    };
 
     return (
         <div>
             <h1>Upload your tracks</h1>
-            {stage === 0 && <Audio next={() => setStage(1)} />}
-            {stage === 1 && <Infor prev={() => setStage(0)} />}
+            {stage === 0 && <Audio {...props} />}
+            {stage === 1 && <Infor {...props} />}
         </div>
     );
 };
