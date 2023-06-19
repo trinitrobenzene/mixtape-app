@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { counter } from './features/Counter';
 import { user } from './features/User';
-import { audio } from './features/files/Audio';
+import { playing } from './features/Playing';
 
 export const store = configureStore({
     reducer: {
         counter: counter.reducer,
         user: user.reducer,
-        audio: audio.reducer,
+        playbar: playing.reducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({

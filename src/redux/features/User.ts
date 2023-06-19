@@ -14,10 +14,19 @@ export const user = createSlice({
     reducers: {
         setLogin: (state, { payload }) => {
             const main = document.querySelector('main');
-            if (main) {
-                payload
-                    ? main.classList.add('active')
-                    : main.classList.remove('active');
+            const head = document.querySelector('header');
+            if (main && head) {
+                if (payload) {
+                    // user is logged
+                    main.classList.add('active');
+                    main.classList.remove('expand');
+                    head.classList.remove('opacity-0');
+                } else {
+                    // user is not logged
+                    main.classList.remove('active');
+                    main.classList.remove('expand');
+                    head.classList.add('opacity-0');
+                }
             }
             state.logged = payload;
         },

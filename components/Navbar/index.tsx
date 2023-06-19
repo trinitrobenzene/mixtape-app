@@ -7,6 +7,7 @@ import {
     ChatLeftFill,
     Newspaper,
     HeartFill,
+    List,
 } from 'react-bootstrap-icons';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
@@ -31,7 +32,7 @@ const Navbar = () => {
         {
             name: 'Library',
             icon: <CollectionFill size={24} />,
-            url: '/',
+            url: '/library',
             active: false,
         },
         {
@@ -58,8 +59,7 @@ const Navbar = () => {
 
     return (
         <nav className="nav">
-            <h1 className="text-2xl text-center">Mixtape</h1>
-            <ul className="menu bg-main w-full">
+            <ul className="menu bg-main pt-8 px-4">
                 {links.map((link, i) => (
                     <Link
                         key={i}
@@ -68,10 +68,11 @@ const Navbar = () => {
                             activeItem === i ? 'text-blue-300' : ''
                         } pb-3 flex gap-3 items-center hover:underline`}
                         onClick={() => setActiveItem(i)}
+                        title={link.name}
                         shallow
                     >
                         {link.icon}
-                        {link.name}
+                        <span className="nav-link">{link.name}</span>
                     </Link>
                 ))}
             </ul>

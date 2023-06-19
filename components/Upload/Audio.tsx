@@ -12,10 +12,10 @@ const Audio = (props: eProps) => {
     const { files, setFiles, callback } = props;
     const filesRef = useRef<HTMLInputElement>(null);
 
+    /**
+     * Remove the particular file in files.
+     */
     const removeFile = (i: number) => {
-        /**
-         * Remove the selected file in files.
-         */
         if (files) {
             const dt = new DataTransfer();
             for (let index = 0; index < files.length; index++) {
@@ -25,16 +25,20 @@ const Audio = (props: eProps) => {
         }
     };
 
+    /**
+     * Handle event when user drag and drop one or many files into drop-zone
+     */
     const onDrogFile = (event: any) => {
         event.preventDefault();
         setFiles(event.dataTransfer.files);
     };
 
+    /**
+     * Get files from drag input and check the extension files
+     * Only accept if extension files is mp3. 
+     * Need more extension. Fix ittttttt
+     */
     const onSetFiles = (event: React.BaseSyntheticEvent) => {
-        /**
-         * Get files from drag input and check the extension files
-         * Only accept if extension files is mp3
-         */
         if (event.target.files) {
             const input = event.target.files;
             for (const item of input) {
@@ -48,9 +52,11 @@ const Audio = (props: eProps) => {
         }
     };
 
+    /**
+     * Handle submit files and go to next step.
+     */
     const onSubmitFiles = (event: React.SyntheticEvent) => {
         event.preventDefault();
-        console.log(files);
         // if files is not null, go to step 1.
         if (files) callback(1);
     };
