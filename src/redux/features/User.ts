@@ -21,14 +21,6 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-<<<<<<< Updated upstream
-        setLogin: (state, { payload }) => {
-            const main = document.querySelector('main');
-            if (main) {
-                payload
-                    ? main.classList.add('active')
-                    : main.classList.remove('active');
-=======
         setUser: (state, { payload }) => {
             console.log("Email: ", payload);
             state.infor.email = payload;
@@ -56,7 +48,6 @@ export const userSlice = createSlice({
                 } else if (action.type.endsWith('/rejected')) {
                     console.log(action.error);
                 }
->>>>>>> Stashed changes
             }
         );
     },

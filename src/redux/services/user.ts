@@ -4,8 +4,6 @@ import { STATUS } from '@/src/constant';
 import User from '@/src/models/User';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-
-
 // get all users from database
 export const getAllUsers = createAsyncThunk('user', async () => {
     try {
