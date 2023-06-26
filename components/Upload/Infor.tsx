@@ -1,5 +1,4 @@
 import Track from '@/src/models/Track';
-import { File } from 'buffer';
 import React, { useEffect, useState } from 'react';
 
 interface eProps {
@@ -8,7 +7,7 @@ interface eProps {
     setFiles: Function;
 }
 
-const Infor = ({ callback, files, setFiles }: eProps) => {
+const Infor = ({ callback, files }: eProps) => {
     const [tracks, setTracks] = useState<Track>(new Track());
     const [preview, setPreview] = useState<any>();
 
@@ -50,7 +49,7 @@ const Infor = ({ callback, files, setFiles }: eProps) => {
                     <input
                         value={tracks.name}
                         onChange={onChange}
-                        name="title"
+                        name="name"
                         className="input input-bordered input-sm w-full"
                     />
                 </div>

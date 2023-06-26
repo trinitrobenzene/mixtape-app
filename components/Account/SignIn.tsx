@@ -39,6 +39,12 @@ const SignIn = ({ callback }: { callback: Function }) => {
                 head?.classList.remove('opacity-0');
             });
     };
+
+    const onSetInfor = (e: React.BaseSyntheticEvent) => {
+        const { name, value } = e.target;
+        setInfor({ ...infor, [name]: value });
+    };
+
     return (
         <form onSubmit={onSubmit}>
             <h3>Đăng nhập đê</h3>
@@ -47,7 +53,10 @@ const SignIn = ({ callback }: { callback: Function }) => {
                     <span className="label-text">Your email</span>
                 </label>
                 <input
+                    value={infor.email}
+                    onChange={onSetInfor}
                     type="email"
+                    name="email"
                     placeholder=""
                     className="input input-bordered w-full"
                 />
@@ -57,7 +66,10 @@ const SignIn = ({ callback }: { callback: Function }) => {
                     <span className="label-text">Your password</span>
                 </label>
                 <input
-                    type="text"
+                    type="password"
+                    name="password"
+                    value={infor.password}
+                    onChange={onSetInfor}
                     placeholder=""
                     className="input input-bordered w-full"
                 />

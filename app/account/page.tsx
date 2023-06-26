@@ -16,8 +16,8 @@ const Account = () => {
     }, [user.logged])
 
     return (
-        <div className="flex pt-16">
-            <div className="p-4 w-4/5 lg:w-3/5 m-auto md:grid md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex pt-[6rem]">
+            <div className={style['account-form']}>
                 <div className="col-span-1 bg-purple-600 p-6">
                     <h3>Welcome to Mixtape</h3>
                     <p className="py-4">

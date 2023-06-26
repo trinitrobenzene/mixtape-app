@@ -12,6 +12,7 @@ const SignUp = ({ callback }: { callback: Function }) => {
     const [user, setUser] = useState(new User());
     const onSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
+        // console.log(user);
         dispatch(createUser(user));
         /* UserService.createUser(user)
             .then(resp => console.log(resp))
@@ -21,9 +22,10 @@ const SignUp = ({ callback }: { callback: Function }) => {
         // route.push('/');
     };
 
-    const onChangeUser = (e: React.BaseSyntheticEvent)=> {
-        console.log(e.target.value)
-    }
+    const onSetUserInfor = (e: React.BaseSyntheticEvent) => {
+        const { name, value } = e.target;
+        setUser({ ...user, [name]: value });
+    };
 
     return (
         <form onSubmit={onSubmit}>
@@ -33,9 +35,13 @@ const SignUp = ({ callback }: { callback: Function }) => {
                     <span className="label-text">Your name</span>
                 </label>
                 <input
+                    value={user.name}
+                    name="name"
                     type="text"
                     placeholder=""
                     className="input input-bordered w-full"
+                    onChange={onSetUserInfor}
+                    required
                 />
             </div>
             <div className="form-control w-full py-3">
@@ -43,9 +49,13 @@ const SignUp = ({ callback }: { callback: Function }) => {
                     <span className="label-text">Your email</span>
                 </label>
                 <input
+                    name="email"
+                    value={user.email}
+                    onChange={onSetUserInfor}
                     type="email"
                     placeholder=""
                     className="input input-bordered w-full"
+                    required
                 />
             </div>
             <div className="form-control w-full py-3">
@@ -53,25 +63,32 @@ const SignUp = ({ callback }: { callback: Function }) => {
                     <span className="label-text">Your password</span>
                 </label>
                 <input
-                    type="text"
+                    name="password"
+                    value={user.password}
+                    onChange={onSetUserInfor}
+                    type="password"
                     placeholder=""
                     className="input input-bordered w-full"
+                    required
                 />
             </div>
             <div>
                 <p>
                     Already have an account?
-                    <button className='btn btn-link' onClick={() => callback(true)}>
-                        Sign Up here!
+                    <button
+                        className="btn btn-link"
+                        onClick={() => callback(true)}
+                        type="button"
+                    >
+                        Sign In here
                     </button>
                 </p>
                 <div className="flex justify-end pt-5">
-                    <button
-                        className="btn btn-outline btn-primary"
+                    <input
                         type="submit"
-                    >
-                        Sign Up
-                    </button>
+                        value={'Sign Up'}
+                        className="btn btn-outline btn-primary"
+                    />
                 </div>
             </div>
         </form>
