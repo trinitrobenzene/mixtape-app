@@ -1,17 +1,30 @@
 'use client';
-import { setLogin } from '@/src/redux/features/User';
+import User from '@/src/models/User';
+// import { setLogin } from '@/src/redux/features/User';
 import { useAppDispatch } from '@/src/redux/hooks';
+import { createUser } from '@/src/redux/services/user';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 
 const SignUp = ({ callback }: { callback: Function }) => {
     const route = useRouter();
     const dispatch = useAppDispatch();
+    const [user, setUser] = useState(new User());
     const onSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(setLogin(true));
-        route.push('/');
+        dispatch(createUser(user));
+        /* UserService.createUser(user)
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error));
+        */
+        // dispatch(setLogin(true));
+        // route.push('/');
     };
+
+    const onChangeUser = (e: React.BaseSyntheticEvent)=> {
+        console.log(e.target.value)
+    }
+
     return (
         <form onSubmit={onSubmit}>
             <h3>Sign Up</h3>

@@ -1,16 +1,43 @@
 'use client';
-import { setLogin } from '@/src/redux/features/User';
+import { STATUS } from '@/src/constant';
+import { setUser } from '@/src/redux/features/User';
+// import { setLogin } from '@/src/redux/features/User';
 import { useAppDispatch } from '@/src/redux/hooks';
+import { signIn } from '@/src/redux/services/user';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 
 const SignIn = ({ callback }: { callback: Function }) => {
     const route = useRouter();
     const dispatch = useAppDispatch();
+    const [infor, setInfor] = useState({ password: '', email: '' });
     const onSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(setLogin(true));
+        // dispatch(setLogin(true));
         route.push('/');
+
+        if (!infor.email || !infor.password) {
+            return;
+        }
+        dispatch(signIn(infor))
+            .then(resp => {
+                if (resp.payload === STATUS.OK) {
+                    route.push('/');
+                    console.log('Đăng nhập thành công!');
+                    dispatch(setUser(infor.email));
+                }
+            })
+            .then(() => {
+                const main = document.querySelector('main');
+                const head = document.querySelector('header');
+                document.querySelector('nav')?.classList.remove('opacity-0');
+                document
+                    .querySelector('#playbar')
+                    ?.classList.remove('opacity-0');
+                main?.classList.add('active');
+                main?.classList.remove('expand');
+                head?.classList.remove('opacity-0');
+            });
     };
     return (
         <form onSubmit={onSubmit}>
@@ -38,7 +65,11 @@ const SignIn = ({ callback }: { callback: Function }) => {
             <div>
                 <p>
                     Don't have account?
-                    <button className='btn btn-link' onClick={() => callback(false)}>
+                    <button
+                        className="btn btn-link"
+                        onClick={() => callback(false)}
+                        type="button"
+                    >
                         Sign Up here!
                     </button>
                 </p>

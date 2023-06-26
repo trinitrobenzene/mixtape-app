@@ -1,10 +1,19 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SignIn from '@/components/Account/SignIn';
 import SignUp from '@/components/Account/SignUp';
+import style from '@/src/styles/account.module.scss';
+import { useAppSelector } from '@/src/redux/hooks';
+import { useRouter } from 'next/navigation';
 
 const Account = () => {
+    const {user} = useAppSelector(_ => _);
+    const route = useRouter();
     const [signIn, setSignIn] = useState(true);
+
+    useEffect(() => {
+        if (user.logged) route.push('/');
+    }, [user.logged])
 
     return (
         <div className="flex pt-16">
