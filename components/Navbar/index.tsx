@@ -1,5 +1,4 @@
 'use client';
-import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
 import {
     HouseDoorFill,
     CollectionFill,

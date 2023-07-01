@@ -8,14 +8,22 @@ interface SignInDTO {
 
 const UserService = {
     /**
-     * POST: http://localhost:4000/user/signup
+     * POST: http://localhost:4000/authen/register
      * Create new user who isn't admin
      */
     createUser: async (user: User) => {
-        return await axios.post('user/signup', {
-            ...user,
-            isAdmin: false,
-        });
+        return await axios.post('authen/register',
+            {
+                email: user.email,
+                password: user.password,
+                name: user.name,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
     },
 
     /**
@@ -23,11 +31,6 @@ const UserService = {
      * Get all users from database
      */
     getAllUser: async () => await axios.get('user'),
-
-    /**
-     * POST: http://localhost:4000/auth/login
-     */
-    signIn: async (user: SignInDTO) => await axios.post('auth/login', user),
 };
 
 export default UserService;

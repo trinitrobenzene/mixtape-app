@@ -30,7 +30,7 @@ export const createUser = createAsyncThunk('user', async (param: User) => {
     }
 });
 
-export const signIn = createAsyncThunk(
+/* export const signIn = createAsyncThunk(
     'user',
     async (param: { email: string; password: string }) => {
         try {
@@ -49,7 +49,7 @@ export const signIn = createAsyncThunk(
             return error;
         }
     }
-);
+); */
 
-const apiActions = [createUser, getAllUsers, signIn];
+const apiActions = [createUser, getAllUsers];
 export default apiActions;

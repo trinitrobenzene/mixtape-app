@@ -38,13 +38,14 @@ const Row = () => {
         <div className="py-4">
             <h5 className="font-semibold">Được phát gần đây</h5>
             <div className="md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                {data.map((d) => (
+                {data.map(d => (
                     <div
                         className="col-auto rounded-lg shadow-xl p-3"
                         key={d.id}
                     >
                         <figure>
-                            <img src={imgUrl} alt="" width={'w-full'} />
+                            {/* <img src={imgUrl} alt="" width={'w-full'} /> */}
+                            <div className="w-full h-[150px] rounded-md bg-stone-200"></div>
                         </figure>
                         <div className="card-body p-0 mt-2">
                             <h5 className="font-semibold text-lg">

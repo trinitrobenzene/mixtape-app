@@ -1,29 +1,24 @@
 'use client';
 import Link from 'next/link';
 import React, { useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-// import { setLogin } from '@/src/redux/features/User';
 import style from '@/src/styles/header.module.scss';
 import SearchBox from './SearchBox';
 import { List } from 'react-bootstrap-icons';
-import { useRouter } from 'next/navigation';
+import { hideElements } from './Account/auxilary';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Header = () => {
-    const dispatch = useAppDispatch();
-    const route = useRouter();
-    const { user } = useAppSelector(_ => _);
+    const { data: session } = useSession();
+
+    const onSignIn = () => {
+        hideElements();
+        signIn();
+    };
 
     const onSignOut = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        // dispatch(setLogin(false));
-        route.push('/account');
-        const main = document.querySelector('main');
-        const head = document.querySelector('header');
-        document.querySelector('nav')?.classList.add('opacity-0');
-        document.querySelector('#playbar')?.classList.add('opacity-0'); 
-        main?.classList.remove('active');
-        main?.classList.remove('expand');
-        head?.classList.add('opacity-0');
+        hideElements();
+        signOut();
     };
 
     const onSearch = (value: string) => {
@@ -62,9 +57,20 @@ const Header = () => {
             </div>
             <SearchBox w={400} onSearch={onSearch} />
             <div className="flex items-center gap-2 relative">
-                <p className="text-white">
-                    Welcome {user.infor.email.split('@')[0]}
-                </p>
+                <div className="text-white">
+                    {session?.user && <em>{session.user.email}</em>}
+                    {!session?.user && (
+                        <div>
+                            <em>You are not logging...</em>
+                            <button
+                                className="btn btn-active btn-link"
+                                onClick={onSignIn}
+                            >
+                                Sign In here!
+                            </button>
+                        </div>
+                    )}
+                </div>
                 <div id={style['user-action']}>
                     <div className="rounded-full h-[40px] w-[40px] text-white bg-stone-200"></div>
                     <ul className="bg-main">

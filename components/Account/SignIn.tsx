@@ -3,23 +3,24 @@ import { STATUS } from '@/src/constant';
 import { setUser } from '@/src/redux/features/User';
 // import { setLogin } from '@/src/redux/features/User';
 import { useAppDispatch } from '@/src/redux/hooks';
-import { signIn } from '@/src/redux/services/user';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { showElements } from './auxilary';
 
-const SignIn = ({ callback }: { callback: Function }) => {
+const SignInPage = ({ callback }: { callback: Function }) => {
     const route = useRouter();
     const dispatch = useAppDispatch();
     const [infor, setInfor] = useState({ password: '', email: '' });
-    const onSubmit = (e: React.SyntheticEvent) => {
+    const onSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         // dispatch(setLogin(true));
-        route.push('/');
+        // route.push('/');
 
         if (!infor.email || !infor.password) {
             return;
         }
-        dispatch(signIn(infor))
+        /* dispatch(signIn(infor))
             .then(resp => {
                 if (resp.payload === STATUS.OK) {
                     route.push('/');
@@ -37,7 +38,18 @@ const SignIn = ({ callback }: { callback: Function }) => {
                 main?.classList.add('active');
                 main?.classList.remove('expand');
                 head?.classList.remove('opacity-0');
-            });
+            }); */
+
+        const resp = await signIn('credentials', {
+            email: infor.email,
+            password: infor.password,
+            redirect: false,
+            callbackUrl: '/'
+        });
+
+        if (resp && resp.ok) {
+            showElements();
+        }
     };
 
     const onSetInfor = (e: React.BaseSyntheticEvent) => {
@@ -98,4 +110,4 @@ const SignIn = ({ callback }: { callback: Function }) => {
     );
 };
 
-export default SignIn;
+export default SignInPage;
