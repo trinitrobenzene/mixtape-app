@@ -1,13 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { counter } from './features/Counter';
 import { user } from './features/User';
-import { playing } from './features/Playing';
+// import { playing } from './features/Playing';
+import { player } from './features/Player';
 
 export const store = configureStore({
     reducer: {
         counter: counter.reducer,
         user: user.reducer,
-        playbar: playing.reducer,
+        player: player.reducer,
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware({
