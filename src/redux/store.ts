@@ -1,8 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { counter } from './features/Counter';
-import { user } from './features/User';
-// import { playing } from './features/Playing';
-import { player } from './features/Player';
+import { configureStore } from "@reduxjs/toolkit";
+import { counter } from "./features/Counter";
+import { user } from "./features/User";
+import { player } from "./features/Player";
 
 export const store = configureStore({
     reducer: {

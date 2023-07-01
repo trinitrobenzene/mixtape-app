@@ -13,7 +13,7 @@ const DisplayTrackInPlaybar = ({
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-
+  console.log(currentTrack);
   return (
     <div>
       <audio
@@ -24,9 +24,9 @@ const DisplayTrackInPlaybar = ({
       />
       <div className="flex gap-4 items-center">
         <div>
-          {currentTrack.thumbnail ? (
+          {currentTrack.image ? (
             <Image
-              src={currentTrack.thumbnail || ""}
+              src={currentTrack.image || ""}
               alt="track cover"
               width={50}
               height={10}
