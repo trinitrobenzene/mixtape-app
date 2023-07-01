@@ -1,13 +1,14 @@
 'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+import 'react-notifications-component/dist/theme.css';
+
 import User from '@/src/models/User';
-// import { setLogin } from '@/src/redux/features/User';
 import { useAppDispatch } from '@/src/redux/hooks';
 import { createUser } from '@/src/redux/services/user';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import 'react-notifications-component/dist/theme.css';
-import { Notice, showElements } from './auxilary';
-import { signIn } from 'next-auth/react';
+import { Notice, showElements } from '@/src/utils/account';
 
 const SignUp = ({ callback }: { callback: Function }) => {
     const route = useRouter();

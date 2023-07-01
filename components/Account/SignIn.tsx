@@ -1,12 +1,11 @@
 'use client';
-import { STATUS } from '@/src/constant';
-import { setUser } from '@/src/redux/features/User';
-// import { setLogin } from '@/src/redux/features/User';
-import { useAppDispatch } from '@/src/redux/hooks';
-import { useRouter } from 'next/navigation';
+
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { showElements } from './auxilary';
+
+import { useAppDispatch } from '@/src/redux/hooks';
+import { showElements } from '@/src/utils/account';
 
 const SignInPage = ({ callback }: { callback: Function }) => {
     const route = useRouter();

@@ -1,5 +1,5 @@
-import AppApi from '@/src/api/config';
-import UserService from '@/src/api/user';
+import AppApi from '@/src/redux/services/api/config';
+import UserService from '@/src/redux/services/api/user';
 import { STATUS } from '@/src/constant';
 import User from '@/src/models/User';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';

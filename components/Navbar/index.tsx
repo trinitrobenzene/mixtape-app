@@ -68,7 +68,7 @@ const Navbar = () => {
                         } pb-3 flex gap-3 items-center hover:underline`}
                         onClick={() => setActiveItem(i)}
                         title={link.name}
-                        shallow
+                        shallow={true}
                     >
                         {link.icon}
                         <span className="nav-link">{link.name}</span>

@@ -31,7 +31,6 @@ export default function RootLayout({ children, session }: IProps) {
                             <Navbar />
                             <main className="active">
                                 {children}
-                                {/* <Footer /> */}
                             </main>
                         </div>
                         <Playbar />

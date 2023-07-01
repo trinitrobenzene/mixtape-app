@@ -1,11 +1,13 @@
 'use client';
+
+import React from 'react';
 import Link from 'next/link';
-import React, { useRef } from 'react';
-import style from '@/src/styles/header.module.scss';
-import SearchBox from './SearchBox';
-import { List } from 'react-bootstrap-icons';
-import { hideElements } from './Account/auxilary';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { List } from 'react-bootstrap-icons';
+
+import SearchBox from '../SearchBox';
+import { hideElements } from '@/src/utils/account';
+import style from '@/src/styles/header.module.scss';
 
 const Header = () => {
     const { data: session } = useSession();

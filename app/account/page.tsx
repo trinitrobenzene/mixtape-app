@@ -1,13 +1,13 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { ReactNotifications } from 'react-notifications-component';
+
 import SignInPage from '@/components/Account/SignIn';
 import SignUp from '@/components/Account/SignUp';
+import { hideElements } from '@/src/utils/account';
 import style from '@/src/styles/account.module.scss';
-import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-import { useRouter } from 'next/navigation';
-import { ReactNotifications } from 'react-notifications-component';
-import { useSession } from 'next-auth/react';
-import { hideElements } from '@/components/Account/auxilary';
 
 const Account = () => {
     const { data: session } = useSession();
