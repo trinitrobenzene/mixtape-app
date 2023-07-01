@@ -1,30 +1,52 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { tracks } from "@/data-test/tracks";
 
 // import components
 import DisplayTrack from "./DisplayTrack";
 import Controls from "./Controls";
 import ProgressBar from "./ProgressBar";
+import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
+import {
+  setActiveSong,
+  setCurrentIndex,
+  setCurrentPlaylist,
+} from "@/src/redux/features/Player";
 
 const AudioPlayer = () => {
   // states
-  const [trackIndex, setTrackIndex] = useState(0);
-  const [currentTrack, setCurrentTrack] = useState(tracks[trackIndex]);
-  const [timeProgress, setTimeProgress] = useState(0);
+  const { player } = useAppSelector((_) => _);
+  console.log(player);
+  const [trackIndex, setTrackIndex] = useState(player.currentIndex);
+  const [currentTrack, setCurrentTrack] = useState(player.activeSong);
   const [duration, setDuration] = useState(0);
-
+  const dispatch = useAppDispatch();
   // reference
   const audioRef = useRef();
   const progressBarRef = useRef();
-
+  useEffect(() => {
+    setCurrentTrack(player.activeSong);
+    console.log("sss");
+  }, [player]);
   const handleNext = () => {
     if (trackIndex >= tracks.length - 1) {
+      dispatch(setCurrentIndex(0));
       setTrackIndex(0);
       setCurrentTrack(tracks[0]);
+      dispatch(setActiveSong(tracks[0]));
     } else {
-      setTrackIndex((prev) => prev + 1);
-      setCurrentTrack(tracks[trackIndex + 1]);
+      if (player.isShuffle) {
+        let randomIndex = Math.floor(Math.random() * tracks.length);
+        setTrackIndex(randomIndex);
+        dispatch(setCurrentIndex(randomIndex));
+        setCurrentTrack(tracks[randomIndex]);
+        dispatch(setActiveSong(tracks[randomIndex]));
+      } else {
+        setTrackIndex(trackIndex + 1);
+        dispatch(setCurrentIndex(trackIndex + 1));
+        setCurrentTrack(tracks[trackIndex + 1]);
+        dispatch(setActiveSong(tracks[trackIndex + 1]));
+      }
     }
   };
 
@@ -46,7 +68,6 @@ const AudioPlayer = () => {
               audioRef,
               progressBarRef,
               duration,
-              setTimeProgress,
               tracks,
               trackIndex,
               setTrackIndex,
@@ -54,9 +75,7 @@ const AudioPlayer = () => {
               handleNext,
             }}
           />
-          <ProgressBar
-            {...{ progressBarRef, audioRef, timeProgress, duration }}
-          />
+          <ProgressBar {...{ progressBarRef, audioRef, duration }} />
         </div>
       </div>
     </>
