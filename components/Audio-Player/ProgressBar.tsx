@@ -27,7 +27,7 @@ const ProgressBar = ({
   };
 
   return (
-    <div className="flex justify-end items-center pr-5 space-x-3 md:space-x-4">
+    <div className="flex justify-end items-center pr-5 pb-3 space-x-3 md:space-x-4">
       <span className="">{formatTime(player.currentTime)}</span>
       <input
         type="range"

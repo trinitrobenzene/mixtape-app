@@ -16,7 +16,7 @@ function CustomImage({ src, className, objectFit }: any) {
       objectFit={objectFit ?? "cover"}
       unoptimized={true}
     />
-  ) : null;
+  ) : <></>;
 }
 
 export default CustomImage;

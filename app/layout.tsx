@@ -3,7 +3,7 @@ import Header from '@/components/Header';
 import './globals.css';
 import { Quicksand } from 'next/font/google';
 import Providers from '@/src/redux/provider';
-import Playbar from '@/components/Playbar';
+import Playbar from '@/components/Playbar/Playbar';
 import "../../mixtape-app/styles/index.css";
 import "../../mixtape-app/styles/customize-progress-bar.css";
 

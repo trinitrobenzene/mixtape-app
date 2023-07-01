@@ -16,7 +16,6 @@ import {
 const AudioPlayer = () => {
   // states
   const { player } = useAppSelector((_) => _);
-  console.log(player);
   const [trackIndex, setTrackIndex] = useState(player.currentIndex);
   const [currentTrack, setCurrentTrack] = useState(player.activeSong);
   const [duration, setDuration] = useState(0);
@@ -26,7 +25,7 @@ const AudioPlayer = () => {
   const progressBarRef = useRef();
   useEffect(() => {
     setCurrentTrack(player.activeSong);
-    console.log("sss");
+    // console.log("sss");
   }, [player]);
   const handleNext = () => {
     if (trackIndex >= tracks.length - 1) {

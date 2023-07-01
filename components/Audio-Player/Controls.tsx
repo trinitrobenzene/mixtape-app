@@ -118,7 +118,7 @@ const Controls = ({
     return (
       <div
         className="flex flex-row justify-between 
-    items-center mt-6 tablet:w-[400px] mobile:w-[320px]"
+    items-center tablet:w-[400px] mobile:w-[320px]"
       >
         <div className="flex flex-col items-center mr-6 ">
           <Shuffle

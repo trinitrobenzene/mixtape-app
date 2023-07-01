@@ -13,7 +13,7 @@ const DisplayTrackInPlaybar = ({
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-  console.log(currentTrack);
+  // console.log(currentTrack);
   return (
     <div>
       <audio
