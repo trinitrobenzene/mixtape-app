@@ -1,22 +1,26 @@
 'use client';
+
+import React from 'react';
 import Link from 'next/link';
-import React, { useRef } from 'react';
-import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-import { setLogin } from '@/src/redux/features/User';
-import style from '@/src/styles/header.module.scss';
-import SearchBox from './SearchBox';
+import { signIn, signOut, useSession } from 'next-auth/react';
 import { List } from 'react-bootstrap-icons';
-import { useRouter } from 'next/navigation';
+
+import SearchBox from '../SearchBox';
+import { hideElements } from '@/src/utils/account';
+import style from '@/src/styles/header.module.scss';
 
 const Header = () => {
-    const dispatch = useAppDispatch();
-    const route = useRouter();
-    const { user } = useAppSelector(_ => _);
+    const { data: session } = useSession();
+
+    const onSignIn = () => {
+        hideElements();
+        signIn();
+    };
 
     const onSignOut = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(setLogin(false));
-        route.push('/account');
+        hideElements();
+        signOut();
     };
 
     const onSearch = (value: string) => {
@@ -55,7 +59,20 @@ const Header = () => {
             </div>
             <SearchBox w={400} onSearch={onSearch} />
             <div className="flex items-center gap-2 relative">
-                <p className="text-white">Welcome Satori</p>
+                <div className="text-white">
+                    {session?.user && <em>{session.user.email}</em>}
+                    {!session?.user && (
+                        <div>
+                            <em>You are not logging...</em>
+                            <button
+                                className="btn btn-active btn-link"
+                                onClick={onSignIn}
+                            >
+                                Sign In here!
+                            </button>
+                        </div>
+                    )}
+                </div>
                 <div id={style['user-action']}>
                     <div className="rounded-full h-[40px] w-[40px] text-white bg-stone-200"></div>
                     <ul className="bg-main">

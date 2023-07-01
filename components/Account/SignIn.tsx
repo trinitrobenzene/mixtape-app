@@ -1,24 +1,54 @@
 'use client';
-import { setLogin } from '@/src/redux/features/User';
-import { useAppDispatch } from '@/src/redux/hooks';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import axios from 'axios';
 
-const SignIn = ({ callback }: { callback: Function }) => {
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { signIn } from 'next-auth/react';
+
+import { useAppDispatch } from '@/src/redux/hooks';
+import { showElements } from '@/src/utils/account';
+
+const SignInPage = ({ callback }: { callback: Function }) => {
     const route = useRouter();
     const dispatch = useAppDispatch();
-
-    const [infor, setInfor] = useState({
-        email: '',
-        password: '',
-    });
-
-    const onSubmit = (e: React.SyntheticEvent) => {
+    const [infor, setInfor] = useState({ password: '', email: '' });
+    const onSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        
-        dispatch(setLogin(true));
+        // dispatch(setLogin(true));
         // route.push('/');
+
+        if (!infor.email || !infor.password) {
+            return;
+        }
+        /* dispatch(signIn(infor))
+            .then(resp => {
+                if (resp.payload === STATUS.OK) {
+                    route.push('/');
+                    console.log('Đăng nhập thành công!');
+                    dispatch(setUser(infor.email));
+                }
+            })
+            .then(() => {
+                const main = document.querySelector('main');
+                const head = document.querySelector('header');
+                document.querySelector('nav')?.classList.remove('opacity-0');
+                document
+                    .querySelector('#playbar')
+                    ?.classList.remove('opacity-0');
+                main?.classList.add('active');
+                main?.classList.remove('expand');
+                head?.classList.remove('opacity-0');
+            }); */
+
+        const resp = await signIn('credentials', {
+            email: infor.email,
+            password: infor.password,
+            redirect: false,
+            callbackUrl: '/'
+        });
+
+        if (resp && resp.ok) {
+            showElements();
+        }
     };
 
     const onSetInfor = (e: React.BaseSyntheticEvent) => {
@@ -61,6 +91,7 @@ const SignIn = ({ callback }: { callback: Function }) => {
                     <button
                         className="btn btn-link"
                         onClick={() => callback(false)}
+                        type="button"
                     >
                         Sign Up here!
                     </button>
@@ -78,4 +109,4 @@ const SignIn = ({ callback }: { callback: Function }) => {
     );
 };
 
-export default SignIn;
+export default SignInPage;
