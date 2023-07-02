@@ -9,7 +9,6 @@ import "../../mixtape-app/styles/index.css";
 import "../../mixtape-app/styles/customize-progress-bar.css";
 import { SessionProvider } from 'next-auth/react';
 
-// const inter = Inter({ subsets: ['latin'] });
 const quicksand = Quicksand({ subsets: ['latin', 'vietnamese'] });
 
 export const metadata = {

@@ -57,7 +57,7 @@ const Header = () => {
                     <Link href={'/'}>Mixtape</Link>
                 </h1>
             </div>
-            <SearchBox w={400} onSearch={onSearch} />
+            <SearchBox onSearch={onSearch} />
             <div className="flex items-center gap-2 relative">
                 <div className="text-white">
                     {session?.user && <em>{session.user.email}</em>}
@@ -75,7 +75,7 @@ const Header = () => {
                 </div>
                 <div id={style['user-action']}>
                     <div className="rounded-full h-[40px] w-[40px] text-white bg-stone-200"></div>
-                    <ul className="bg-main">
+                    <ul className="bg-main p-2">
                         <li className="py-2 px-6">User profile</li>
                         <li className="py-2 px-6">
                             <Link href={'/account'} shallow onClick={onSignOut}>

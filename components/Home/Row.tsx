@@ -2,8 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 const Row = () => {
-    const imgUrl =
-        'https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/6/5/6/4/6564372bd4a9df8add0125fe9fe4b226.jpg';
+    // const imgUrl = 'https://photo-resize-zmp3.zmdcdn.me/w320_r1x1_webp/cover/6/5/6/4/6564372bd4a9df8add0125fe9fe4b226.jpg';
     const data = [
         {
             name: 'Bài hát 1',
@@ -36,8 +35,8 @@ const Row = () => {
     ];
     return (
         <div className="py-4">
-            <h5 className="font-semibold">Được phát gần đây</h5>
-            <div className="md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <h2 className="font-semibold pb-2">Được phát gần đây</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 {data.map(d => (
                     <div
                         className="col-auto rounded-lg shadow-xl p-3"

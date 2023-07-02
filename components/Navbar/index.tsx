@@ -12,7 +12,6 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
-    // const { user } = useAppSelector(_ => _);
     const [activeItem, setActiveItem] = useState(0);
 
     const links = [
@@ -53,8 +52,6 @@ const Navbar = () => {
             active: false,
         },
     ];
-
-    // if (!user.logged) return <></>;
 
     return (
         <nav className="nav">

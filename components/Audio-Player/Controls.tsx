@@ -133,21 +133,21 @@ const Controls = ({
             className={player.isShuffle ? "bg-[#e72be4] block" : "hidden"}
           ></div>
         </div>
-        <div className="flex flex-row items-center">
-          <button className="p-5" onClick={handlePrevious}>
-            <SkipStartFill />
+        <div className="flex gap-5 items-center py-4">
+          <button onClick={handlePrevious}>
+            <SkipStartFill size={24}/>
           </button>
-          <button className="p-5" onClick={skipBackward}>
-            <SkipBackwardFill />
+          <button onClick={skipBackward}>
+            <SkipBackwardFill size={24}/>
           </button>
-          <button className="p-5" onClick={togglePlayPause}>
-            {player.isPlaying ? <PauseFill /> : <PlayFill />}
+          <button onClick={togglePlayPause}>
+            {player.isPlaying ? <PauseFill size={24}/> : <PlayFill size={24}/>}
           </button>
-          <button className="p-5" onClick={skipForward}>
-            <SkipForwardFill />
+          <button onClick={skipForward}>
+            <SkipForwardFill size={24}/>
           </button>
-          <button className="p-5" onClick={handleNext}>
-            <SkipEndFill />
+          <button onClick={handleNext}>
+            <SkipEndFill size={24}/>
           </button>
         </div>
 
