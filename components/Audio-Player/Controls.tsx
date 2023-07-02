@@ -118,7 +118,7 @@ const Controls = ({
     return (
       <div
         className="flex flex-row justify-between 
-    items-center mt-6 tablet:w-[400px] mobile:w-[320px]"
+    items-center tablet:w-[400px] mobile:w-[320px]"
       >
         <div className="flex flex-col items-center mr-6 ">
           <Shuffle
@@ -133,21 +133,21 @@ const Controls = ({
             className={player.isShuffle ? "bg-[#e72be4] block" : "hidden"}
           ></div>
         </div>
-        <div className="flex flex-row items-center">
-          <button className="p-5" onClick={handlePrevious}>
-            <SkipStartFill />
+        <div className="flex gap-5 items-center py-4">
+          <button onClick={handlePrevious}>
+            <SkipStartFill size={24}/>
           </button>
-          <button className="p-5" onClick={skipBackward}>
-            <SkipBackwardFill />
+          <button onClick={skipBackward}>
+            <SkipBackwardFill size={24}/>
           </button>
-          <button className="p-5" onClick={togglePlayPause}>
-            {player.isPlaying ? <PauseFill /> : <PlayFill />}
+          <button onClick={togglePlayPause}>
+            {player.isPlaying ? <PauseFill size={24}/> : <PlayFill size={24}/>}
           </button>
-          <button className="p-5" onClick={skipForward}>
-            <SkipForwardFill />
+          <button onClick={skipForward}>
+            <SkipForwardFill size={24}/>
           </button>
-          <button className="p-5" onClick={handleNext}>
-            <SkipEndFill />
+          <button onClick={handleNext}>
+            <SkipEndFill size={24}/>
           </button>
         </div>
 
@@ -182,22 +182,22 @@ const Controls = ({
     );
   }
   return (
-    <div className="flex justify-between items-center mt-2.5">
-      <div className="flex justify-between p-5">
-        <button className="p-5" onClick={handlePrevious}>
-          <SkipStartFill />
+    <div className="flex justify-between items-center py-1 -ml-4">
+      <div className="flex justify-between">
+        <button className="p-4" onClick={handlePrevious}>
+          <SkipStartFill size={24}/>
         </button>
-        <button className="p-5" onClick={skipBackward}>
-          <SkipBackwardFill />
+        <button className="p-4" onClick={skipBackward}>
+          <SkipBackwardFill size={24}/>
         </button>
         <button className="p-5" onClick={togglePlayPause}>
           {player.isPlaying ? <PauseFill /> : <PlayFill />}
         </button>
-        <button className="p-5" onClick={skipForward}>
-          <SkipForwardFill />
+        <button className="p-4" onClick={skipForward}>
+          <SkipForwardFill size={24}/>
         </button>
-        <button className="p-5" onClick={handleNext}>
-          <SkipEndFill />
+        <button className="p-4" onClick={handleNext}>
+          <SkipEndFill size={24}/>
         </button>
       </div>
       <div className="flex items-center">
@@ -209,7 +209,7 @@ const Controls = ({
           ) : player.volume < 40 ? (
             <VolumeDownFill />
           ) : (
-            <VolumeUpFill />
+            <VolumeUpFill size={24}/>
           )}
         </button>
         <input

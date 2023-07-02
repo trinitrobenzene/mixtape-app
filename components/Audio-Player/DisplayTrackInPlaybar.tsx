@@ -13,7 +13,7 @@ const DisplayTrackInPlaybar = ({
     setDuration(seconds);
     progressBarRef.current.max = seconds;
   };
-  console.log(currentTrack);
+  // console.log(currentTrack);
   return (
     <div>
       <audio
@@ -22,7 +22,7 @@ const DisplayTrackInPlaybar = ({
         onLoadedMetadata={onLoadedMetadata}
         onEnded={handleNext}
       />
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <div>
           {currentTrack.image ? (
             <Image
@@ -41,9 +41,9 @@ const DisplayTrackInPlaybar = ({
           )}
         </div>
         <div className="text-left">
-          <p className="text-left py-2 font-bold text-2xl">
-            {currentTrack.name}
-          </p>
+          <h4 className="font-bold">
+            {currentTrack.title}
+          </h4>
           <p>{currentTrack.author}</p>
         </div>
       </div>

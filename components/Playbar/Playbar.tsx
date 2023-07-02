@@ -2,9 +2,9 @@
 import { tracks } from "@/data-test/tracks";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
-import Controls from "./Audio-Player/Controls";
-import ProgressBar from "./Audio-Player/ProgressBar";
-import DisplayTrackInPlaybar from "./Audio-Player/DisplayTrackInPlaybar";
+import Controls from "../Audio-Player/Controls";
+import ProgressBar from "../Audio-Player/ProgressBar";
+import DisplayTrackInPlaybar from "../Audio-Player/DisplayTrackInPlaybar";
 import { useAppDispatch, useAppSelector } from "@/src/redux/hooks";
 import {
   setActiveSong,
@@ -15,7 +15,6 @@ import {
 
 const Playbar = () => {
   const { player } = useAppSelector((_) => _);
-  console.log(player);
   const [trackIndex, setTrackIndex] = useState(player.currentIndex);
   const [currentTrack, setCurrentTrack] = useState(player.activeSong);
   const [duration, setDuration] = useState(0);
@@ -26,17 +25,13 @@ const Playbar = () => {
     zIndex: 10,
   };
   const dispatch = useAppDispatch();
-  /*  dispatch(setCurrentIndex(trackIndex));
-  dispatch(setCurrentPlaylist(tracks));
-  dispatch(setActiveSong(tracks[trackIndex])); */
-  console.log(currentTrack);
 
   // reference
   const audioRef = useRef();
   const progressBarRef = useRef();
   useEffect(() => {
     setCurrentTrack(player.activeSong);
-    console.log("sss");
+    // console.log("sss");
   }, [player]);
   const handleNext = () => {
     if (trackIndex >= tracks.length - 1) {
@@ -60,14 +55,14 @@ const Playbar = () => {
       }
     }
   };
-  console.log(currentTrack);
+  // console.log(currentTrack);
   return (
     <div
       className="bg-main text-white grid grid-flow-col px-2 md:px-8 auto-cols-1"
       style={{ ...playbarStyle, position: "fixed" }}
     >
       {/* Left */}
-      <div className="row-span-3 auto-cols-1 py-8">
+      <div className="row-span-3 auto-cols-1">
         <DisplayTrackInPlaybar
           {...{
             currentTrack,

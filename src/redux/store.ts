@@ -1,15 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { counter } from "./features/Counter";
-import { user } from "./features/User";
+import { configureStore } from '@reduxjs/toolkit';
+import { counter } from './features/Counter';
+import { userSlice } from './features/User';
 import { player } from "./features/Player";
 
 export const store = configureStore({
-  reducer: {
-    counter: counter.reducer,
-    user: user.reducer,
-    player: player.reducer,
-  },
-  devTools: true,
+    reducer: {
+        counter: counter.reducer,
+        player: player.reducer,
+        user: userSlice.reducer,
+    },
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
+    devTools: true,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
