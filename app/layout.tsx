@@ -2,14 +2,11 @@
 import Navbar from '@/components/Navbar';
 import Header from '@/components/Header';
 import './globals.css';
-import { Quicksand } from 'next/font/google';
 import Providers from '@/src/redux/provider';
 import Playbar from '@/components/Playbar';
 import "../../mixtape-app/styles/index.css";
 import "../../mixtape-app/styles/customize-progress-bar.css";
 import { SessionProvider } from 'next-auth/react';
-
-const quicksand = Quicksand({ subsets: ['latin', 'vietnamese'] });
 
 export const metadata = {
     title: 'Mixtape',
@@ -25,7 +22,7 @@ export default function RootLayout({ children, session }: IProps) {
     return (
         <html lang="en">
             <Providers>
-                <body className={quicksand.className}>
+                <body>
                     <SessionProvider session={session}>
                         <Header />
                         <div className="relative">

@@ -13,6 +13,15 @@
         @apply hidden;
     }
 
+    .nav li.active {
+        @apply text-main underline rounded-md;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .nav a:hover {
+        @apply bg-stone-100 rounded-md text-main ease-linear duration-200;
+    }
+
     .head {
         @apply px-6 py-3 bg-main fixed z-10 top-0 right-0 left-0 flex justify-between;
     }
