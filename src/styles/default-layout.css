@@ -2,21 +2,35 @@
 
 @layer components {
     .nav {
-        @apply bg-main text-white p-4 fixed z-10 top-0 left-0 bottom-0 w-[240px];
-        height: 100vh
+        @apply bg-main text-white p-4 fixed z-10 top-[64px] left-0 bottom-0 w-[200px];
+    }
+
+    .nav.minimize {
+        @apply w-[90px];
+    }
+
+    .nav.minimize .nav-link {
+        @apply hidden;
     }
 
     .head {
-        @apply px-6 py-4 bg-main fixed z-10 top-0 right-0 left-[240px] flex justify-between;
-        width: calc(100vw - 240px);
+        @apply px-6 py-3 bg-main fixed z-10 top-0 right-0 left-0 flex justify-between;
     }
 
     main {
-        @apply absolute top-[72px] left-0 right-0 bottom-0 overflow-hidden overflow-y-auto ;
-        height: calc(100vh - 210px);
+        @apply absolute top-0 left-0 right-0 bottom-0 overflow-hidden overflow-y-auto;
+        background-image: url('../assets/images/login_horizol.jpg');
+        background-size: cover;
+        height: 100vh;
     }
 
     main.active {
-        @apply left-[240px] px-6 py-4;
+        @apply left-[200px] top-[64px] px-4 py-4;
+        background: none;
+        height: calc(100vh - 156px);
+    }
+
+    main.expand {
+        @apply left-[90px];
     }
 }

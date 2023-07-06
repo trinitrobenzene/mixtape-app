@@ -1,16 +1,42 @@
+@tailwind components;
+
 #user-action {
-    ul {
-        display: none;
-        position: absolute;
-        top: 105%;
-        right: 0;
-        color: white;
-        text-align: center;
+	ul {
+		display: none;
+		position: absolute;
+		top: 100%;
+		right: 0;
+		color: white;
+		text-align: center;
+	}
+
+	&:hover {
+		ul {
+			display: block;
+		}
+
+		li:hover {
+			cursor: pointer;
+			background-color: snow;
+			color: purple;
+			transition: ease 300ms;
+			border-radius: 0.33rem;
+			border: 0;
+		}
+	}
+}
+
+@layer components {
+    .search-box {
+        @apply bg-white rounded-lg px-2 py-1 flex w-[240px] md:w-[300px] lg:w-[400px];
     }
 
-    &:hover {
-        ul {
-            display: block
+	.search-input {
+		@apply bg-transparent flex-grow focus:border-0;
+        
+        &::placeholder {
+            font-size: smaller;
+			font-style: italic;
         }
-    }
+	}
 }

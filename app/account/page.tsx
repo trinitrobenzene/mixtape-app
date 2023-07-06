@@ -1,64 +1,48 @@
 'use client';
-import React from 'react'
-import style from '@/src/styles/account.module.scss';
-import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-import { setLogin } from '@/src/redux/features/User';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { ReactNotifications } from 'react-notifications-component';
+
+import SignInPage from '@/components/Account/SignIn';
+import SignUp from '@/components/Account/SignUp';
+import { hideElements } from '@/src/utils/account';
+import style from '@/src/styles/account.module.scss';
 
 const Account = () => {
-    const dispatch = useAppDispatch();
-    const route = useRouter()
+    const { data: session } = useSession();
+    const route = useRouter();
+    const [signIn, setSignIn] = useState(true);
 
-    const onSubmit = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        dispatch(setLogin(true));
-        route.push('/');
-    }
+    useEffect(() => {
+        if (session?.user) {
+            route.push('/');
+        } else {
+            hideElements();
+        }
+    }, [session]);
 
     return (
-        <div className={style.account}>
-            <div className='p-4 w-3/5 m-auto grid grid-cols-3'>
-                <div className='col-span-1 bg-purple-600 p-6'>
-                    <h1>Welcome to Mixtape</h1>
-                    <p className='py-4'>
+        <div className="flex pt-6">
+            <div className={style['account-form']}>
+                <div className="col-span-1 bg-purple-600 p-6">
+                    <h3>Welcome to Mixtape</h3>
+                    <p className="py-4">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Velit placeat cumque modi repudiandae maiores
                     </p>
-                    <button className="btn btn-primary rounded-3xl">Read more</button>
+                    <button className="btn btn-primary rounded-3xl">
+                        Read more
+                    </button>
                 </div>
-                <div className='col-span-2 p-6 bg-white'>
-                    <h1>Đăng nhập đê</h1>
-                    <form>
-                        <div className="form-control w-full py-3">
-                            <label className="label">
-                                <span className="label-text">Your email</span>
-                            </label>
-                            <input 
-                                type="email" 
-                                placeholder="" 
-                                className="input input-bordered w-full"
-                            />
-                        </div>
-                        <div className="form-control w-full py-3">
-                            <label className="label">
-                                <span className="label-text">Your password</span>
-                            </label>
-                            <input 
-                                type="text" 
-                                placeholder="" 
-                                className="input input-bordered w-full"
-                            />
-                        </div>
-                        <div className='flex justify-end pt-5'>
-                            <button className='btn btn-outline btn-primary' onClick={onSubmit}>
-                                Sign In
-                            </button>
-                        </div>
-                    </form>
+                <div className="md:col-span-1 lg:col-span-2 p-6 bg-stone-50">
+                    {signIn && <SignInPage callback={setSignIn} />}
+                    {!signIn && <SignUp callback={setSignIn} />}
                 </div>
             </div>
+            <ReactNotifications />
         </div>
-    )
-}
+    );
+};
 
-export default Account
+export default Account;
