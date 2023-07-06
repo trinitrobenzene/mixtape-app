@@ -1,9 +1,5 @@
 #myaudio {
     margin: 12px;
     display: block !important;
-    visibility: visible;
-    position: fixed;
-    bottom: 100px;
-    z-index: 1000;
-    background-color: silver;
+    height: 32px;
 }

@@ -47,13 +47,10 @@ const Illustration = () => {
 				</button>
 			</div>
 			<div className="py-6">
-				{imgUrl.preview && <img src={imgUrl.preview} alt="" />}
-                {/* Audio sẽ không hiển thị do bị ẩn bởi thuộc tính nào đó
-                  * Sửa nếu cần thiết
-                */}
 				{audioUrl.preview && (
-					<audio id="myaudio" src={audioUrl.preview} autoPlay />
+					<audio id="myaudio" controls src={audioUrl.preview} />
 				)}
+				{imgUrl.preview && <img src={imgUrl.preview} alt="" />}
 			</div>
 		</div>
 	);
