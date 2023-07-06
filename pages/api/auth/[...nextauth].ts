@@ -3,6 +3,8 @@ import axios from 'axios';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
+export let tk = '';
+
 export const authOptions: NextAuthOptions = {
 	providers: [
 		CredentialsProvider({
@@ -32,59 +34,15 @@ export const authOptions: NextAuthOptions = {
 							},
 						}
 					);
-					if (resp.status === 200 || resp.status === 201)
-						return await resp.data;
+					if (resp.status === 200 || resp.status === 201) {
+						const data = await resp.data;
+						tk = data.access_token;
+						return data;
+					}
 				} catch (error: any) {
 					// console.log(error);
 					throw new Error(error.response.data.message);
 				}
-
-				/* if (email === 'red@mail.com' && password === '123') {
-                    const url1 = `http://localhost:4000/user/648ec1afb139d0adfe1e0643`;
-                    const url2 = 'https://jsonplaceholder.typicode.com/users/1';
-                    const resp = await fetch(url2);
-                    const data = await resp.json();
-                    return {
-                        id: data.id,
-                        name: data.name,
-                        username: data.username,
-                        email: data.email,
-                        phone: data.phone,
-                        isAdmin: false,
-                        token: code[0],
-                    };
-                } else if (email === 'blue@mail.com' && password === '123') {
-                    const url1 = `http://localhost:4000/user/648ec1afb139d0adfe1e0643`;
-                    const url2 = 'https://jsonplaceholder.typicode.com/users/2';
-                    const resp = await fetch(url2);
-                    const data = await resp.json();
-                    return {
-                        id: data.id,
-                        name: data.name,
-                        username: data.username,
-                        email: data.email,
-                        phone: data.phone,
-                        isAdmin: true,
-                        token: code[1],
-                    };
-                } else {
-                    throw new Error('Undefined user...');
-                } */
-
-				/* const resp = await fetch('http://localhost:4001/authen/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }), // body data type must match "Content-Type" header
-                });
-                console.log(resp);
-
-                if (resp.ok) {
-                    const res = await resp.json();
-                    return res;
-                }
-                return null; */
 			},
 		}),
 	],
@@ -97,9 +55,46 @@ export const authOptions: NextAuthOptions = {
 	},
 	callbacks: {
 		async jwt({ token, user }) {
+			/**
+			 * token = {
+				email: 'gray@mail.com',
+				sub: '649fee4e94db8cfc83643fff',
+				access_token: '...',
+				id: '649fee4e94db8cfc83643fff',
+				iat: 1688652502,
+				exp: 1691244502,
+				jti: '13c7cfb7-21b2-40f2-8614-b1606da59cc3'
+				}
+			 * user = {
+				access_token: '...',
+				email: 'gray@mail.com',
+				id: '649fee4e94db8cfc83643fff'
+				}
+			 * account = {
+				providerAccountId: '648ec1afb139d0adfe1e0643',
+				type: 'credentials',
+				provider: 'credentials'
+				}
+			 */
 			return { ...token, ...user };
 		},
-		async session({ session, token, user }) {
+		async session({ session, token }) {
+			/**
+			 * session = { 
+			 	user: { name: undefined, email: 'gray@mail.com', image: undefined },
+  				expires: '2023-08-05T14:10:00.137Z'
+			}
+			* token = {
+				email: 'red@mail.com',
+				sub: '648ec1afb139d0adfe1e0643',
+				access_token: '...',
+				id: '648ec1afb139d0adfe1e0643',
+				iat: 1688652692,
+				exp: 1691244692,
+				jti: '7acef96a-675c-4650-be6f-79d9a7c2ecb2'
+			}
+			* user = undefined
+			*/
 			session.user = token;
 			return session;
 		},

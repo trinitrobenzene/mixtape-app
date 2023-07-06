@@ -17,7 +17,7 @@ const links = [
 	{
 		name: 'Feed',
 		icon: <Newspaper size={24} />,
-		url: '/',
+		url: '/illustration',
 		active: false,
 	},
 	{

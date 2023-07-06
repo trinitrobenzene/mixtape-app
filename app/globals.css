@@ -3,6 +3,8 @@
 @tailwind utilities;
 @import url('@/src/styles/general.css');
 @import url('@/src/styles/default-layout.css');
+@import url('@/styles/customize-progress-bar.css');
+@import url('@/styles/index.css');
 
 @layer base {
 	h1 {

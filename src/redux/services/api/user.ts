@@ -1,5 +1,5 @@
 import User from '@/src/models/User';
-import axios from './config';
+import axios from 'axios';
 
 interface SignInDTO {
     email: string;
