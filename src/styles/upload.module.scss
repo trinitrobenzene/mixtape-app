@@ -1,0 +1,19 @@
+@tailwind components;
+
+@layer components {
+    .dropzone {
+        @apply border border-gray-300 p-8 rounded-xl h-fit mx-auto flex flex-col items-center;
+    }
+
+    .fileszone {
+        @apply grid grid-cols-3 gap-8;
+
+        ol {
+            @apply col-span-2 p-8 max-h-[8rem] overflow-hidden overflow-y-auto;
+
+            svg {
+                display: inline-block;
+            }
+        }
+    }
+}

@@ -23,6 +23,20 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "data-test/tracks.js", "app/songpage/page.js", "components/Audio-Player/ProgressBar.js", "components/Audio-Player/Controls.js", "components/Audio-Player/AudioPlayer.js", "components/Audio-Player/DisplayTrack.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "data-test/tracks.js",
+    "app/songpage/page.js",
+    "components/Audio-Player/ProgressBar.js",
+    "components/Audio-Player/Controls.js",
+    "components/Audio-Player/AudioPlayer.js",
+    "components/Audio-Player/DisplayTrack.js",
+    "src/redux/features/Player.js",
+    "components/Audio-Player/Player.jsx",
+    "src/redux/features/Player.js"
+  ],
   "exclude": ["node_modules"]
 }

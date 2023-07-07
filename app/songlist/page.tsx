@@ -11,7 +11,7 @@ const SongList = () => {
       <div className="flex flex-col bg-white m-3 rounded-lg space-y-3 relative h-fit">
         <AudioPlayer></AudioPlayer>
       </div>
-      <div className="bg-white m-4 rounded-lg space-y-3 relative">
+      <div className="bg-white m-4   rounded-lg space-y-3 relative">
         <Songs></Songs>
       </div>
     </div>

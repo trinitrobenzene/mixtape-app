@@ -13,14 +13,14 @@ const Song = ({ item: track, itemIndex }: Props) => {
         <p>{itemIndex + 1}</p>
         <div>
           <Image
-            src={track?.thumbnail || ""}
+            src={track?.image || ""}
             alt="track cover"
             width={50}
             height={50}
           />
         </div>
         <div>
-          <p className="w-36 lg:w-72 truncate text-black">{track?.title}</p>
+          <p className="w-36 lg:w-72 truncate text-black">{track?.name}</p>
           <p className="w-40">{track?.author}</p>
         </div>
       </div>

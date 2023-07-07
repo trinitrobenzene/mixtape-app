@@ -1,12 +1,18 @@
-import React from 'react'
-import Home from './home/page'
+'use client';
+import React from 'react';
+import Home from './home/page';
+import { useSession } from 'next-auth/react';
+import Account from './account/page';
 
-const HomePage = () => {
-  return (
-    <div>
-      <Home />
-    </div>
-  )
-}
+const Supper = () => {
+	const { status } = useSession();
+	return (
+		<>
+			{status === 'authenticated' && <Home />}
+			{status === 'loading' && <p>Loading...</p>}
+			{status === 'unauthenticated' && <Account />}
+		</>
+	);
+};
 
-export default HomePage;
+export default Supper;
