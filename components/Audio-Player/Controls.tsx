@@ -66,11 +66,11 @@ const Controls = ({
 	}, [audioRef, duration, progressBarRef]);
 
 	useEffect(() => {
-		// if (isPlaying) {
-		//   audioRef.current.play();
-		// } else {
-		//   audioRef.current.pause();
-		// }
+		if (player.isPlaying) {
+			audioRef.current.play();
+		} else {
+			audioRef.current.pause();
+		}
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [audioRef, repeat]);
 
