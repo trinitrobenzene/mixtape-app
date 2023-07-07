@@ -25,6 +25,7 @@ const AudioPlayer = () => {
 	const progressBarRef = useRef();
 	useEffect(() => {
 		setCurrentTrack(player.activeSong);
+		dispatch(setCurrentPlaylist(tracks));
 		// console.log("sss");
 	}, [player]);
 	const handleNext = () => {
@@ -66,8 +67,6 @@ const AudioPlayer = () => {
 						audioRef,
 						progressBarRef,
 						duration,
-						tracks,
-						trackIndex,
 						setTrackIndex,
 						setCurrentTrack,
 						handleNext,
