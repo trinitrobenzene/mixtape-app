@@ -9,8 +9,6 @@ import TrackService from '@/src/redux/services/api/track';
 import { useEffect, useState } from 'react';
 
 const DisplayTrack = ({
-	audioUrl,
-	currentTrack,
 	audioRef,
 	setDuration,
 	progressBarRef,
@@ -23,7 +21,6 @@ const DisplayTrack = ({
 		setDuration(seconds);
 		progressBarRef.current.max = seconds;
 	};
-	console.log(audioUrl);
 	/* const getATrack = async () => {
 		const token =
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODczMjA5OCwiZXhwIjoxNjkzOTE2MDk4fQ.PQhamKRL67JfZY05tCDVFIIAAVPM8_JvlK3hhEaO7II';
@@ -45,11 +42,10 @@ const DisplayTrack = ({
     w-screen max-w-full"
 		>
 			<audio
-				src={audioUrl.preview}
+				src={player.trackUrl}
 				ref={audioRef}
-				/* onLoadedMetadata={onLoadedMetadata}
-				onEnded={handleNext} */
-				controls
+				onLoadedMetadata={onLoadedMetadata}
+				onEnded={handleNext}
 			/>
 			<div className="flex flex-row items-center w-full cursor-pointer">
 				<div
@@ -57,15 +53,15 @@ const DisplayTrack = ({
 						boxShadow:
 							'rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset',
 					}}
-					className="w-[150px] h-[150px] min-w-[50px]
-         relative cursor-pointer rounded-sm"
+					className="w-[150px] h-[150px] cursor-pointer rounded-sm"
 				>
-					<Image
+					{/* <Image
 						src={player.coverImageUrl}
 						alt="track cover"
+						className="object-center"
 						width={160}
-						height={200}
-					/>
+						height={300}
+					/> */}
 				</div>
 
 				<div className="mx-4">

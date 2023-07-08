@@ -2,6 +2,7 @@ import { ArrowClockwise } from 'react-bootstrap-icons';
 import Image from 'next/image';
 import TrackService from '@/src/redux/services/api/track';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '@/src/redux/hooks';
 
 const DisplayTrackInPlaybar = ({
 	currentTrack,
@@ -11,6 +12,7 @@ const DisplayTrackInPlaybar = ({
 	handleNext,
 }: any) => {
 	const [audioUrl, setAudioUrl] = useState({ preview: '' });
+	const { player } = useAppSelector(_ => _);
 	const onLoadedMetadata = () => {
 		const seconds = audioRef.current.duration;
 		setDuration(seconds);
@@ -33,32 +35,31 @@ const DisplayTrackInPlaybar = ({
 	useEffect(() => {
 		return () => URL.revokeObjectURL(audioUrl.preview);
 	}, [audioUrl]);
-	console.log(currentTrack);
 	return (
 		<div>
 			<audio
-				src={currentTrack.trackFile}
+				src={player.trackUrl}
 				ref={audioRef}
 				onLoadedMetadata={onLoadedMetadata}
 				onEnded={handleNext}
 			/>
 			<div className="flex gap-4">
 				<div>
-					{currentTrack.coverImage ? (
+					{
+						/* currentTrack.coverImage ? (
 						<Image
-							src={currentTrack.coverImage || ''}
+							src={player.coverImageUrl || ''}
 							alt="track cover"
 							width={50}
 							height={10}
 							className="rounded-full"
 						/>
-					) : (
-						<div className="flex justify-center items-center max-h-fit">
+					) :  */ <div className="flex justify-center items-center max-h-fit">
 							<span className="flex justify-center items-center bg-slate-300">
 								<ArrowClockwise />
 							</span>
 						</div>
-					)}
+					}
 				</div>
 				<div className="text-left">
 					<p className="garage-title max-w-[100px]">{currentTrack.name}</p>

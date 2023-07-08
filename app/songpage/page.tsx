@@ -9,21 +9,12 @@ import { People, Cassette } from 'react-bootstrap-icons';
 import Comments from '@/components/Comments/Comments';
 
 const SongPage = () => {
-<<<<<<< HEAD
 	return (
 		<div className="grid grid-rows-1">
 			<div className="absolute flex animate-slideup">
 				<AudioPlayer></AudioPlayer>
 			</div>
 			{/* <div className="h-100 bottom-0 left-0 right-0">
-=======
-  return (
-    <div className="grid grid-rows-1">
-      <div className="absolute flex animate-slideup">
-        <AudioPlayer></AudioPlayer>
-      </div>
-      <div className="h-100 bottom-0 left-0 right-0">
->>>>>>> 2d2668caede49808ad6d47f7ced8d9021b46da39
         <div className="grid grid-cols-2">
           <div className="flex flex-col bg-white m-3 py-6 rounded-lg space-y-3 relative h-fit">
             <div className="flex justify-center p-8">

@@ -26,7 +26,6 @@ const AudioPlayer = () => {
 	const [audioUrl, setAudioUrl] = useState({ preview: '' });
 	const [imgUrl, setImgUrl] = useState({ preview: '' });
 	const [currentTrack, setCurrentTrack] = useState(new Track());
-	const [trackInfo, setTrackInfor] = useState(new Track());
 	const [duration, setDuration] = useState(0);
 	const [trackIndex, setTrackIndex] = useState(player.currentIndex);
 
@@ -39,16 +38,20 @@ const AudioPlayer = () => {
 		const token =
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
 		await TrackService.getTrackById('64a802eb222f9174fecbef83', token)
-			.then(resp => resp && setCurrentTrack(resp))
+			.then(async resp => resp && (await setCurrentTrack(resp)))
 			.catch(err => console.log(err));
 	};
 
 	const getAudioFile = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
-		await TrackService.getAudioFileById(trackInfo.trackFile, token)
-			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
-			.catch(err => console.log(err));
+		if (currentTrack.trackFile[0]) {
+			const token =
+				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
+			await TrackService.getAudioFileById(currentTrack.trackFile[0], token)
+				.then(
+					resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) })
+				)
+				.catch(err => console.log(err));
+		}
 	};
 
 	/* Xoá audio khi bị thay đổi để không bị rò rỉ bộ nhớ */
@@ -65,7 +68,7 @@ const AudioPlayer = () => {
 			.then(resp => resp && setImgUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));
 	};
-	console.log(imgUrl.preview);
+
 	/* Xoá hình ảnh khi bị thay đổi để không bị rò rỉ bộ nhớ */
 	useEffect(() => {
 		dispatch(setCoverImage(imgUrl.preview));
@@ -76,9 +79,15 @@ const AudioPlayer = () => {
 
 	useEffect(() => {
 		getATrack();
-		getAudioFile();
-		getAnImage();
 	}, []);
+
+	useEffect(() => {
+		// console.log('1');
+		if (currentTrack != null) {
+			getAudioFile();
+			getAnImage();
+		}
+	}, [currentTrack]);
 
 	/* 	useEffect(() => {
 		setCurrentTrack(trackInfo);
@@ -89,7 +98,6 @@ const AudioPlayer = () => {
 		dispatch(setActiveSong(currentTrack));
 	}, [currentTrack]);
 
-	console.log(audioUrl.preview);
 	const handleNext = () => {
 		if (trackIndex >= tracks.length - 1) {
 			dispatch(setCurrentIndex(0));
@@ -116,8 +124,6 @@ const AudioPlayer = () => {
 			<div className="max-w-7xl m-auto">
 				<DisplayTrack
 					{...{
-						audioUrl,
-						currentTrack,
 						audioRef,
 						setDuration,
 						progressBarRef,
