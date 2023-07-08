@@ -19,17 +19,17 @@ const DisplayTrackInPlaybar = ({
 	const getATrack = async () => {
 		const token =
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODcyNDI5NSwiZXhwIjoxNjkzOTA4Mjk1fQ.eC9o3xm4wtJ3iDryeGjfO_V-lWVPOWnwhPHn5RxwZaw';
-		TrackService.getById('64a5827877e11b77dc2cc532', token)
+		TrackService.getAudioFileById('64a5827877e11b77dc2cc532', token)
 			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));
 	};
-	const getAllTrack = async () => {
+	/* const getAllTrack = async () => {
 		const token =
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODcyNDI5NSwiZXhwIjoxNjkzOTA4Mjk1fQ.eC9o3xm4wtJ3iDryeGjfO_V-lWVPOWnwhPHn5RxwZaw';
 		TrackService.getAll(token)
 			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));
-	};
+	}; */
 	useEffect(() => {
 		return () => URL.revokeObjectURL(audioUrl.preview);
 	}, [audioUrl]);
@@ -37,16 +37,16 @@ const DisplayTrackInPlaybar = ({
 	return (
 		<div>
 			<audio
-				src={audioUrl.preview}
+				src={currentTrack.trackFile}
 				ref={audioRef}
 				onLoadedMetadata={onLoadedMetadata}
 				onEnded={handleNext}
 			/>
 			<div className="flex gap-4">
 				<div>
-					{currentTrack.image ? (
+					{currentTrack.coverImage ? (
 						<Image
-							src={currentTrack.image || ''}
+							src={currentTrack.coverImage || ''}
 							alt="track cover"
 							width={50}
 							height={10}

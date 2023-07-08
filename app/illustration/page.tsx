@@ -11,19 +11,22 @@ const Illustration = () => {
 
 	/** Gọi api để lấy ảnh */
 	const getAnImage = async () => {
-		const token = await GetToken();
-		ImageService.getById(`64a5850b77e11b77dc2cc537`, token)
+		const token =
+			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
+		ImageService.getById(`64a802e8222f9174fecbef7f`, token)
 			.then(resp => resp && setImgUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));
 	};
 
 	/** Gọi api để lấy track */
 	const getATrack = async () => {
-		const token = await GetToken();
-		TrackService.getById('64a5827877e11b77dc2cc532', token)
+		const token =
+			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODczMjA5OCwiZXhwIjoxNjkzOTE2MDk4fQ.PQhamKRL67JfZY05tCDVFIIAAVPM8_JvlK3hhEaO7II';
+		TrackService.getAudioFileById('64a804cd222f9174fecbef88', token)
 			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));
 	};
+	console.log(audioUrl);
 
 	/* Xoá hình ảnh khi bị thay đổi để không bị rò rỉ bộ nhớ */
 	useEffect(() => {
@@ -52,7 +55,7 @@ const Illustration = () => {
 				 * Sửa nếu cần thiết
 				 */}
 				{audioUrl.preview && (
-					<audio id="myaudio" src={audioUrl.preview} autoPlay />
+					<audio id="myaudio" src={audioUrl.preview} controls />
 				)}
 			</div>
 		</div>

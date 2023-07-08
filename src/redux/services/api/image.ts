@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ImageService = {
 	getAll: async () => {
-		return await axios.get('avatar/all', {
+		return await axios.get('track-cover/all', {
 			headers: {
 				Authorization: 'Bearer ' + tk,
 			},
@@ -12,7 +12,7 @@ const ImageService = {
 
 	getById: async (id: string, token: string) => {
 		try {
-			const resp = await fetch(`http://localhost:4000/avatar/${id}`, {
+			const resp = await fetch(`http://localhost:4000/track-cover/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			});
 			return await resp.blob();

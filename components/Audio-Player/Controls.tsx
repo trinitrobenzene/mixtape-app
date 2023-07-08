@@ -38,6 +38,7 @@ const Controls = ({
 	const [muteVolume, setMuteVolume] = useState(false);
 	const dispatch = useAppDispatch();
 	const { player } = useAppSelector(_ => _);
+	console.log(player);
 	isFullScreen = true;
 	const togglePlayPause = () => {
 		const p = player.isPlaying;

@@ -1,3 +1,4 @@
+'use client';
 import Artists from '@/src/models/User';
 import Track from '@/src/models/Track';
 import st from '@/data-test/avatar1.jpg';
@@ -19,17 +20,8 @@ const artistTest: Artists = {
 	password: '123',
 };
 
-function ArtistProfile({
-	data,
-	tracks,
-	counts,
-}: {
-	data: Artists;
-	tracks: Track[];
-	counts: number;
-}) {
+function ArtistProfile() {
 	const artist = artistTest;
-	counts = 5;
 	return (
 		<div>
 			<div className="bg-gradient-to-r from-indigo-500 h-64">
@@ -44,7 +36,7 @@ function ArtistProfile({
 							className="text-black-300 capitalize indent-6 font-bold text-2xl mb-6 
           cursor-pointer line-clamp-1 mobile:text-sm"
 						>
-							{artist!.name}
+							{artist?.name}
 						</p>
 						<p
 							className="text-black-400 text-center capitalize indent-6 font-bold text-sm mobile:text-xs 
@@ -68,7 +60,7 @@ function ArtistProfile({
 				<h1 className="px-8 tablet:px-6 mobile:px-4 text-xl font-ProximaBold mb-6 mobile:text-base">
 					Popular Tracks
 				</h1>
-				<TracksList tracks={tracks} />
+				<TracksList />
 			</div>
 		</div>
 	);

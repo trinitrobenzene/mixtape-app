@@ -5,21 +5,19 @@ import React, { useState } from 'react';
 import CustomImage from '../CustomImage';
 import { setIsPlaying } from '@/src/redux/features/Player';
 
-const TrackCard = ({
-	track,
-	onClick,
-}: {
-	track: Track;
-	onClick: () => void;
-}) => {
+interface Props {
+	track: number;
+	/* onClick: () => void; */
+}
+
+const TrackCard = () => {
 	const [showPlayButton, setPlayButton] = useState(false);
 	const { player } = useAppSelector(_ => _);
 
 	return (
 		<div
-			key={track.id}
 			className="mr-4 cursor-grab"
-			onClick={onClick}
+			/* onClick={onClick} */
 			onMouseEnter={() => setPlayButton(true)}
 			onMouseLeave={() => setPlayButton(false)}
 		>
@@ -35,9 +33,9 @@ const TrackCard = ({
 					}}
 					className="w-[160px] h-[160px] relative rounded-md"
 				>
-					{player.activeSong.id === track.id ? (
+					{player.activeSong.id === /* track.id */ '' ? (
 						<PlayPauseButton
-							condition={player.activeSong.id === track.id}
+							condition={player.activeSong.id === '' /* track.id */}
 							isPlaying={player.isPlaying}
 						/>
 					) : showPlayButton ? (
@@ -47,14 +45,19 @@ const TrackCard = ({
 							isPlaying={player.isPlaying}
 						/>
 					) : null}
-					<CustomImage src={track.image + ''} className="rounded-md" />
+					<CustomImage
+						src={/* track */ /* .coverImage */ +''}
+						className="rounded-md"
+					/>
 				</div>
-				<p className="line-clamp-2 mt-3 text-base">{track.name}</p>
+				<p className="line-clamp-2 mt-3 text-base">
+					{/* track */ /* .name */ 'Nguyen huu tHNAG'}
+				</p>
 				<p
 					className="line-clamp-2 mt-0.5 text-sm text-gray-400 
             font-ProximaRegular"
 				>
-					{track.author}
+					{'HHUH' /* .author */}
 				</p>
 			</div>
 		</div>

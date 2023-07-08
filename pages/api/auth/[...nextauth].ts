@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
 					password: '123';
 				};
 
-				try {
+				/* try {
 					const resp = await axios.post(
 						'http://localhost:4000/authen/login',
 						{
@@ -43,7 +43,12 @@ export const authOptions: NextAuthOptions = {
 				} catch (error: any) {
 					// console.log(error);
 					throw new Error(error.response.data.message);
-				}
+				} */
+				return {
+					id: 1,
+					email: 'red@mail.com',
+					password: '123',
+				};
 			},
 		}),
 	],

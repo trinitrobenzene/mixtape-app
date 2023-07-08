@@ -22,8 +22,8 @@ const SignInPage = ({ callback }: { callback: Function }) => {
 		}
 
 		const resp = await signIn('credentials', {
-			email: infor.email,
-			password: infor.password,
+			email: 'blue@mail.com',
+			password: '123',
 			redirect: false,
 			callbackUrl: '/',
 		});
@@ -37,7 +37,7 @@ const SignInPage = ({ callback }: { callback: Function }) => {
 					title: 'Error',
 					message: resp.error,
 					type: 'warning',
-					time: 2000
+					time: 2000,
 				});
 				return;
 			}
