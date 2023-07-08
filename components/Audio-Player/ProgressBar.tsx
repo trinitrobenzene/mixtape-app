@@ -9,10 +9,10 @@ const ProgressBar = ({
 }: any) => {
 	const { player } = useAppSelector(_ => _);
 	const dispatch = useAppDispatch();
-	console.log(duration);
 
 	const handleProgressChange = () => {
 		audioRef.current.currentTime = progressBarRef.current.value;
+		console.log(audioRef.current.currentTime);
 		dispatch(setCurrentTime(progressBarRef.current.value));
 	};
 
@@ -35,7 +35,7 @@ const ProgressBar = ({
 				ref={progressBarRef}
 				defaultValue="0"
 				style={{
-					background: `linear-gradient(to right, #600f78 ${player.currentTime}%, #ccc ${player.currentTime}%)`,
+					background: `linear-gradient(to right, #ffffff ${player.currentTime}%, #ccc ${player.currentTime}%)`,
 				}}
 				onChange={handleProgressChange}
 			/>

@@ -38,7 +38,6 @@ const Controls = ({
 	const [muteVolume, setMuteVolume] = useState(false);
 	const dispatch = useAppDispatch();
 	const { player } = useAppSelector(_ => _);
-	console.log(player);
 	isFullScreen = true;
 	const togglePlayPause = () => {
 		const p = player.isPlaying;
@@ -62,28 +61,29 @@ const Controls = ({
 			'--range-progress',
 			`${(progressBarRef.current.value / duration) * 100}%`
 		);
-
+		dispatch(setCurrentTime(currentTime));
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [audioRef, duration, progressBarRef]);
 
 	useEffect(() => {
-		if (player.isPlaying) {
-			audioRef.current.play();
-		} else {
-			audioRef.current.pause();
+		console.log('1');
+		if (audioRef) {
+			if (player.isPlaying) {
+				audioRef.current.play();
+			} else {
+				audioRef.current.pause();
+			}
 		}
 		playAnimationRef.current = requestAnimationFrame(repeat);
-	}, [audioRef, repeat]);
+	}, [audioRef, repeat, player.isPlaying]);
 
 	const skipForward = () => {
 		audioRef.current.currentTime += 15;
-		console.log(audioRef.current.currentTime);
 		dispatch(setCurrentTime(audioRef.current.currentTime));
 	};
 
 	const skipBackward = () => {
 		audioRef.current.currentTime -= 15;
-		console.log(audioRef.current.currentTime);
 		dispatch(setCurrentTime(audioRef.current.currentTime));
 	};
 
