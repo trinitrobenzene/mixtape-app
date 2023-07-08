@@ -21,14 +21,7 @@ const Playbar = () => {
 	const getATrack = async () => {
 		const token =
 			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODcyNDI5NSwiZXhwIjoxNjkzOTA4Mjk1fQ.eC9o3xm4wtJ3iDryeGjfO_V-lWVPOWnwhPHn5RxwZaw';
-		TrackService.getById('64a5827877e11b77dc2cc532', token)
-			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
-			.catch(err => console.log(err));
-	};
-	const getAllTrack = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODcyNDI5NSwiZXhwIjoxNjkzOTA4Mjk1fQ.eC9o3xm4wtJ3iDryeGjfO_V-lWVPOWnwhPHn5RxwZaw';
-		TrackService.getAll(token)
+		TrackService.getAudioFileById('64a5827877e11b77dc2cc532', token)
 			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));
 	};

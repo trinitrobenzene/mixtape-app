@@ -22,8 +22,13 @@ const SignInPage = ({ callback }: { callback: Function }) => {
 		}
 
 		const resp = await signIn('credentials', {
+<<<<<<< HEAD
 			email: 'blue@mail.com',
 			password: '123',
+=======
+			email: infor.email,
+			password: infor.password,
+>>>>>>> 2d2668caede49808ad6d47f7ced8d9021b46da39
 			redirect: false,
 			callbackUrl: '/',
 		});
@@ -37,7 +42,11 @@ const SignInPage = ({ callback }: { callback: Function }) => {
 					title: 'Error',
 					message: resp.error,
 					type: 'warning',
+<<<<<<< HEAD
 					time: 2000,
+=======
+					time: 2000
+>>>>>>> 2d2668caede49808ad6d47f7ced8d9021b46da39
 				});
 				return;
 			}

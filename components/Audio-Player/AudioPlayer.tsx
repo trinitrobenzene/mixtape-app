@@ -111,7 +111,6 @@ const AudioPlayer = () => {
 			}
 		}
 	};
-
 	return (
 		<div className="bg-white">
 			<div className="max-w-7xl m-auto">
@@ -130,6 +129,8 @@ const AudioPlayer = () => {
 						audioRef,
 						progressBarRef,
 						duration,
+						tracks,
+						trackIndex,
 						setTrackIndex,
 						setCurrentTrack,
 						handleNext,
