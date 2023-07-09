@@ -3,9 +3,9 @@ import Playbar from './Playbar';
 
 const IndexPlaybar = () => {
 	return (
-		<section id="playbar">
+		<div id="playbar">
 			<Playbar />
-		</section>
+		</div>
 	);
 };
 
