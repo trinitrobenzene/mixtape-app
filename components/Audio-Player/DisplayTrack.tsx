@@ -53,20 +53,21 @@ const DisplayTrack = ({
 						boxShadow:
 							'rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset',
 					}}
-					className="w-[150px] h-[150px] cursor-pointer rounded-sm"
+					className="w-[200px] h-[200px] cursor-pointer rounded-sm"
 				>
-					{/* <Image
+					<Image
 						src={player.coverImageUrl}
 						alt="track cover"
-						className="object-center"
-						width={160}
-						height={300}
-					/> */}
+						quality={100}
+						style={{ objectFit: 'fill' }}
+						width={200}
+						height={400}
+					/>
 				</div>
 
-				<div className="mx-4">
+				<div className="mx-4 gap-8">
 					<p
-						className="text-gray-300 
+						className="text-2xl text-black-500 
           cursor-pointer line-clamp-1"
 					>
 						{player.activeSong?.name}

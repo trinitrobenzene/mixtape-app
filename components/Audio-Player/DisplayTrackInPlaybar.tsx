@@ -45,24 +45,25 @@ const DisplayTrackInPlaybar = ({
 			/>
 			<div className="flex gap-4">
 				<div>
-					{
-						/* currentTrack.coverImage ? (
+					{currentTrack.coverImage ? (
 						<Image
 							src={player.coverImageUrl || ''}
 							alt="track cover"
 							width={50}
-							height={10}
-							className="rounded-full"
+							height={50}
 						/>
-					) :  */ <div className="flex justify-center items-center max-h-fit">
+					) : (
+						<div className="flex justify-center items-center max-h-fit">
 							<span className="flex justify-center items-center bg-slate-300">
 								<ArrowClockwise />
 							</span>
 						</div>
-					}
+					)}
 				</div>
 				<div className="text-left">
-					<p className="garage-title max-w-[100px]">{currentTrack.name}</p>
+					<p className="garage-title max-w-[100px] text-base">
+						{currentTrack.name}
+					</p>
 					<p>{currentTrack.author}</p>
 				</div>
 			</div>
