@@ -35,7 +35,7 @@ const ProgressBar = ({
 				ref={progressBarRef}
 				defaultValue="0"
 				style={{
-					background: `linear-gradient(to right, #ffffff ${player.currentTime}%, #ccc ${player.currentTime}%)`,
+					background: `linear-gradient(to right, #ccc ${player.currentTime}%)`,
 				}}
 				onChange={handleProgressChange}
 			/>
