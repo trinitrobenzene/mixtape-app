@@ -15,6 +15,37 @@ const TrackService = {
 			console.log(error);
 		}
 	},
+	/**
+	 * POST: http://localhost:4000/track/
+	 */
+	createNewTrack: async (body: FormData, token: string) => {
+		try {
+			const resp = await axios({
+				method: 'POST',
+				url: 'track',
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+				data: body,
+			});
+			return resp.data;
+		} catch (error) {
+			console.log(error);
+		}
+	},
+	getByQuantity: async (skip: number, limit: number, token: string) => {
+		try {
+			const resp = await axios.get('track/limit', {
+				params: { skip, limit },
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
+			return resp.data;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 };
 
 export default TrackService;

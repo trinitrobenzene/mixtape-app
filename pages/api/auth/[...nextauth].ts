@@ -21,28 +21,36 @@ export const authOptions: NextAuthOptions = {
 					password: string;
 				};
 
-				try {
-					const resp = await axios.post(
+				/* try {
+					const resp = await fetch(
 						'http://localhost:4000/authen/login',
 						{
-							email,
-							password,
-						},
-						{
+							method: 'POST',
+							body: JSON.stringify({ email, password }),
 							headers: {
 								'Content-Type': 'application/json',
 							},
 						}
 					);
 					if (resp.status === 200 || resp.status === 201) {
-						const data = await resp.data;
+						const data = await resp.json();
 						tk = data.access_token;
-						return data;
+						return {
+							...data,
+							id: data.id,
+							email: data.email,
+						};
 					}
 				} catch (error: any) {
-					// console.log(error);
-					throw new Error(error.response.data.message);
-				}
+					console.log(error);
+					throw new Error('...');
+				} */
+
+				return await {
+					id: 'red',
+					email: 'red@mail.com',
+					name: 'Red',
+				};
 			},
 		}),
 	],

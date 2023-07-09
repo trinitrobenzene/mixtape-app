@@ -20,6 +20,17 @@ const ImageService = {
 			console.log(error);
 		}
 	},
+
+	getTrackCoverById: async (id:string, token:string) => {
+		try {
+			const resp = await fetch(`http://localhost:4000/track-cover/${id}`, {
+				headers: { Authorization: `Bearer ${token}` },
+			});
+			return await resp.blob();
+		} catch (error) {
+			console.log(error);
+		}
+	} 
 };
 
 export default ImageService;
