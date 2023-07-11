@@ -18,16 +18,16 @@ const Playbar = () => {
 	const { player } = useAppSelector(_ => _);
 
 	const [audioUrl, setAudioUrl] = useState({ preview: '' });
-	const getATrack = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODcyNDI5NSwiZXhwIjoxNjkzOTA4Mjk1fQ.eC9o3xm4wtJ3iDryeGjfO_V-lWVPOWnwhPHn5RxwZaw';
-		TrackService.getAudioFileById('64a5827877e11b77dc2cc532', token)
-			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
-			.catch(err => console.log(err));
-	};
-	useEffect(() => {
-		return () => URL.revokeObjectURL(audioUrl.preview);
-	}, [audioUrl]);
+	// const getATrack = async () => {
+	// 	const token =
+	// 		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODcyNDI5NSwiZXhwIjoxNjkzOTA4Mjk1fQ.eC9o3xm4wtJ3iDryeGjfO_V-lWVPOWnwhPHn5RxwZaw';
+	// 	TrackService.getAudioFileById('64a5827877e11b77dc2cc532', token)
+	// 		.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
+	// 		.catch(err => console.log(err));
+	// };
+	// useEffect(() => {
+	// 	return () => URL.revokeObjectURL(audioUrl.preview);
+	// }, [audioUrl]);
 	const [trackIndex, setTrackIndex] = useState(player.currentIndex);
 	const [currentTrack, setCurrentTrack] = useState(player.activeSong);
 	const [duration, setDuration] = useState(0);
@@ -43,6 +43,7 @@ const Playbar = () => {
 	// reference
 	const audioRef = useRef();
 	const progressBarRef = useRef();
+
 	useEffect(() => {
 		setCurrentTrack(player.activeSong);
 		// console.log("sss");

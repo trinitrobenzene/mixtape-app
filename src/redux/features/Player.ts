@@ -10,6 +10,7 @@ export interface IStateProps {
 	isShuffle: boolean;
 	volume: number;
 	currentTime: number;
+	temp: number;
 	activeSong: Track;
 	liked: number[];
 	trackUrl: string;
@@ -23,6 +24,7 @@ const initialState: IStateProps = {
 	isShuffle: false,
 	volume: 0,
 	currentTime: 0,
+	temp: 0,
 	activeSong: new Track(),
 	liked: [],
 	trackUrl: '',
@@ -33,6 +35,9 @@ export const player = createSlice({
 	name: 'player',
 	initialState,
 	reducers: {
+		setTemp: (state, action: PayloadAction<number>) => {
+			state.temp = action.payload;
+		},
 		setIsPlaying: (state, action: PayloadAction<boolean>) => {
 			state.isPlaying = action.payload;
 		},
@@ -50,7 +55,6 @@ export const player = createSlice({
 		},
 		setActiveSong: (state, action: PayloadAction<Track>) => {
 			state.activeSong = action.payload;
-			state.currentTime = 0;
 		},
 		setCurrentPlaylist: (state, action: PayloadAction<Array<Track>>) => {
 			state.currentPlaylist = action.payload;
@@ -127,6 +131,7 @@ export const player = createSlice({
 });
 
 export const {
+	setTemp,
 	setVolume,
 	setIsPlaying,
 	setIsShuffle,

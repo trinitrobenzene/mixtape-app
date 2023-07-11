@@ -11,9 +11,9 @@ import Comments from '@/components/Comments/Comments';
 const SongPage = () => {
 	return (
 		<div className="flex flex-col">
-			<div>
+			{/* <div>
 				<AudioPlayer></AudioPlayer>
-			</div>
+			</div> */}
 			<div>
 				<div className="grid grid-cols-2">
 					<div className="flex flex-col bg-white m-3 py-6 rounded-lg space-y-3 relative h-fit">

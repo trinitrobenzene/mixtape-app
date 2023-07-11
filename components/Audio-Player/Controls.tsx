@@ -31,14 +31,12 @@ const Controls = ({
 	setTrackIndex,
 	setCurrentTrack,
 	handleNext,
-	isFullScreen,
 }: any) => {
 	// const [isPlaying, setIsPlaying] = useState(false);
 
 	const [muteVolume, setMuteVolume] = useState(false);
 	const dispatch = useAppDispatch();
 	const { player } = useAppSelector(_ => _);
-	isFullScreen = true;
 	const togglePlayPause = () => {
 		const p = player.isPlaying;
 		dispatch(setIsPlaying(!p));
@@ -56,12 +54,13 @@ const Controls = ({
 
 	const repeat = useCallback(() => {
 		const currentTime = audioRef.current.currentTime;
+		dispatch(setCurrentTime(currentTime));
 		progressBarRef.current.value = currentTime;
 		progressBarRef.current.style.setProperty(
 			'--range-progress',
 			`${(progressBarRef.current.value / duration) * 100}%`
 		);
-		dispatch(setCurrentTime(currentTime));
+		/* dispatch(setCurrentTime(progressBarRef.current.value)); */
 		playAnimationRef.current = requestAnimationFrame(repeat);
 	}, [audioRef, duration, progressBarRef]);
 
@@ -114,82 +113,29 @@ const Controls = ({
 		dispatch(setIsShuffle(!player.isShuffle));
 	};
 
-	if (isFullScreen) {
-		return (
-			<div
-				className="flex flex-row justify-between 
+	return (
+		<div
+			className="flex flex-row justify-between 
     items-center mt-6 tablet:w-[400px] mobile:w-[320px]"
-			>
-				<div className="flex items-center mr-6 gap-3 ">
-					<Shuffle
-						className={
-							player.isShuffle
-								? 'text-[#e72be4]'
-								: 'text-gray-400 hover:text-white'
-						}
-						onClick={onShuffle}
-					></Shuffle>
-					<div
-						className={player.isShuffle ? 'bg-[#e72be4] block' : 'hidden'}
-					></div>
-					<div className="flex items-center mr-6">
-						<LikeButton track_id={player.activeSong.id} />
-						<div
-							className={player.liked ? 'bg-[#e72be4] block' : 'hidden'}
-						></div>
-					</div>
-				</div>
-				<div className="flex flex-row items-center">
-					<button className="p-5" onClick={handlePrevious}>
-						<SkipStartFill />
-					</button>
-					<button className="p-5" onClick={skipBackward}>
-						<SkipBackwardFill />
-					</button>
-					<button className="p-5" onClick={togglePlayPause}>
-						{player.isPlaying ? <PauseFill /> : <PlayFill />}
-					</button>
-					<button className="p-5" onClick={skipForward}>
-						<SkipForwardFill />
-					</button>
-					<button className="p-5" onClick={handleNext}>
-						<SkipEndFill />
-					</button>
-				</div>
-
-				<div className="flex flex-col items-center ml-6 mr-2">
-					<div className="flex items-center">
-						<button
-							onClick={(e: any) =>
-								setMuteVolumeOnClick(Boolean(e.target.value))
-							}
-						>
-							{player.volume == 0 || player.volume < 5 ? (
-								<VolumeMuteFill />
-							) : player.volume < 40 ? (
-								<VolumeDownFill />
-							) : (
-								<VolumeUpFill />
-							)}
-						</button>
-						<input
-							type="range"
-							min={0}
-							max={100}
-							value={player.volume}
-							onChange={(e: any) => onChange(Number(e.target.value))}
-							style={{
-								background: `linear-gradient(to right, #b700ffd2 ${player.volume}%, #ccc ${player.volume}%)`,
-							}}
-						/>
-					</div>
+		>
+			<div className="flex items-center mr-6 gap-3 ">
+				<Shuffle
+					className={
+						player.isShuffle
+							? 'text-[#e72be4]'
+							: 'text-gray-400 hover:text-white'
+					}
+					onClick={onShuffle}
+				></Shuffle>
+				<div
+					className={player.isShuffle ? 'bg-[#e72be4] block' : 'hidden'}
+				></div>
+				<div className="flex items-center mr-6">
+					<LikeButton track_id={player.activeSong.id} />
+					<div className={player.liked ? 'bg-[#e72be4] block' : 'hidden'}></div>
 				</div>
 			</div>
-		);
-	}
-	return (
-		<div className="flex justify-between items-center mt-2.5">
-			<div className="flex justify-between p-5">
+			<div className="flex flex-row items-center">
 				<button className="p-5" onClick={handlePrevious}>
 					<SkipStartFill />
 				</button>
@@ -206,28 +152,31 @@ const Controls = ({
 					<SkipEndFill />
 				</button>
 			</div>
-			<div className="flex items-center">
-				<button
-					onClick={(e: any) => setMuteVolumeOnClick(Boolean(e.target.value))}
-				>
-					{player.volume == 0 || player.volume < 5 ? (
-						<VolumeMuteFill />
-					) : player.volume < 40 ? (
-						<VolumeDownFill />
-					) : (
-						<VolumeUpFill />
-					)}
-				</button>
-				<input
-					type="range"
-					min={0}
-					max={100}
-					value={player.volume}
-					onChange={(e: any) => onChange(Number(e.target.value))}
-					style={{
-						background: `linear-gradient(to right, #b700ffd2 ${player.volume}%, #ccc ${player.volume}%)`,
-					}}
-				/>
+
+			<div className="flex flex-col items-center ml-6 mr-2">
+				<div className="flex items-center">
+					<button
+						onClick={(e: any) => setMuteVolumeOnClick(Boolean(e.target.value))}
+					>
+						{player.volume == 0 || player.volume < 5 ? (
+							<VolumeMuteFill />
+						) : player.volume < 40 ? (
+							<VolumeDownFill />
+						) : (
+							<VolumeUpFill />
+						)}
+					</button>
+					<input
+						type="range"
+						min={0}
+						max={100}
+						value={player.volume}
+						onChange={(e: any) => onChange(Number(e.target.value))}
+						style={{
+							background: `linear-gradient(to right, #b700ffd2 ${player.volume}%, #ccc ${player.volume}%)`,
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);
