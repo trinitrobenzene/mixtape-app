@@ -6,7 +6,6 @@ import CustomImage from '../CustomImage';
 import Link from 'next/link';
 import GetToken from '@/components/Token';
 import TrackService from '@/src/redux/services/api/track';
-import { useEffect, useState } from 'react';
 
 const DisplayTrack = ({
 	audioRef,
@@ -87,26 +86,6 @@ const DisplayTrack = ({
 					</p>
 				</div>
 			</div>
-
-			{/* <div className="grid gap-4">
-        <div className="w-full md:w-auto">
-          {currentTrack.image ? (
-            <Image src={currentTrack.image || ""} alt="track cover" />
-          ) : (
-            <div className="flex justify-center items-center max-h-fit">
-              <span className="flex justify-center items-center bg-slate-300">
-                <ArrowClockwise />
-              </span>
-            </div>
-          )}
-        </div>
-        <div className="text-left text-black">
-          <p className="text-left p-2 text-black font-bold text-2xl">
-            {currentTrack.name}
-          </p>
-          <p className="text-left">{currentTrack.author}</p>
-        </div>
-      </div> */}
 		</div>
 	);
 };

@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-import { setCurrentTime } from '@/src/redux/features/Player';
+import { setCurrentTime, setTemp } from '@/src/redux/features/Player';
+import { useEffect } from 'react';
 
 const ProgressBar = ({
 	progressBarRef,
@@ -10,10 +11,13 @@ const ProgressBar = ({
 	const { player } = useAppSelector(_ => _);
 	const dispatch = useAppDispatch();
 
-	const handleProgressChange = () => {
-		audioRef.current.currentTime = progressBarRef.current.value;
+	const handleProgressChange = async () => {
+		audioRef.current.currentTime = await progressBarRef.current.value;
 		console.log(audioRef.current.currentTime);
-		dispatch(setCurrentTime(progressBarRef.current.value));
+		let i = audioRef.current.currentTime;
+		dispatch(setCurrentTime(audioRef.current.currentTime));
+		dispatch(setTemp(12));
+		console.log(player);
 	};
 
 	const formatTime = (time: any) => {
