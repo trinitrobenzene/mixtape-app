@@ -1,7 +1,7 @@
 import { StaticImageData } from 'next/image';
 
 export default class Track {
-	id: string;
+	_id: string;
 	userUpload: string;
 	name: string;
 	author: string[] | string;
@@ -16,7 +16,7 @@ export default class Track {
 	isPrivate: boolean;
 
 	constructor() {
-		this.id = '';
+		this._id = '';
 		this.userUpload = '';
 		this.name = '';
 		this.author = '';

@@ -7,42 +7,44 @@ import { UserComment } from '../../data-test/comments';
 import CommentInTrack from '@/src/models/CommentInTrack';
 import { useAppSelector } from '@/src/redux/hooks';
 import CommentService from '@/src/redux/services/api/comment';
+import CreateCommentTrack from '@/src/dto/create-comment.dto';
+import ImageService from '@/src/redux/services/api/image';
 
 export default function Comments() {
-	const currentUser = UserComment[0].currentUser;
-	const [commentData, setCommentData] = useState(new CommentInTrack());
+	// const currentUser = UserComment[0].currentUser;
+	const [commentData, setCommentData] = useState<CommentInTrack[]>([]);
+	const [isNewComment, setIsNewComment] = useState(false);
+	const [imgUrl, setImgUrl] = useState({ preview: '' });
 	const { player } = useAppSelector(_ => _);
+	const { user } = useAppSelector(_ => _);
+	const [currentUser, setCurrentUser] = useState(user.infor);
+	console.log(user);
 
-	const formatTime = (time: any) => {
-		if (time && !isNaN(time)) {
-			const minutes = Math.floor(time / 60);
-			const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
-			const seconds = Math.floor(time % 60);
-			const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
-			return `${formatMinutes}:${formatSeconds}`;
-		}
-		return '00:00';
-	};
+	const token =
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
 
 	function buildCommentSection(comment: any) {
-		getCommentById();
-		return comment.map((comment: any) => (
-			<CommentBlock
-				currentUser={currentUser}
-				commentId={comment.id}
-				key={comment.id}
-				comment={comment}
-			/>
-		));
+		// getCommentByTrackId();
+		if (comment) {
+			return comment.map((comment: any) => (
+				<CommentBlock
+					currentUser={currentUser}
+					commentId={comment.id}
+					key={comment.id}
+					comment={comment}
+				/>
+			));
+		} else {
+			return <div>Loading</div>;
+		}
 	}
 
 	function buildCommentObj(text: any) {
-		const newComment: CommentInTrack = {
+		const newComment: CreateCommentTrack = {
 			id: '',
 			content: text,
-			atTimeInTrack: formatTime(player.currentTime),
-			id_track: player.activeSong.id,
-			id_user: '',
+			atTimeInTrack: player.currentTime,
+			track: player.activeSong._id,
 		};
 
 		return newComment;
@@ -55,22 +57,39 @@ export default function Comments() {
       newComment,
     ]);
   } */
-	const getCommentById = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
-		await CommentService.getCommentsByIdTrack(`64a802eb222f9174fecbef83`, token)
+
+	const getAnImage = async () => {
+		ImageService.getById(currentUser.avatar, token)
+			.then(resp => resp && setImgUrl({ preview: URL.createObjectURL(resp) }))
+			.catch(err => console.log(err));
+	};
+
+	const getCommentByTrackId = async () => {
+		// console.log(player.activeSong._id.toString());
+		await CommentService.getCommentsByIdTrack('64abd84772ef0e0f90bb9f8e', token)
 			.then(resp => resp && setCommentData(resp))
 			.catch(err => console.log(err));
 	};
 
 	const addNewComment = async (text: any) => {
+		setIsNewComment(true);
 		const newComment = buildCommentObj(text);
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
 		CommentService.postComment(newComment, token)
 			.then(resp => console.log(resp.data))
 			.catch(err => console.log(err));
 	};
+
+	useEffect(() => {
+		// buildCommentSection()
+		getCommentByTrackId();
+		getAnImage();
+		console.log(imgUrl.preview);
+	}, []);
+
+	useEffect(() => {
+		getCommentByTrackId();
+		setIsNewComment(false);
+	}, [isNewComment]);
 
 	return (
 		<>
@@ -80,7 +99,7 @@ export default function Comments() {
 					<SendComment
 						buttonText={'SEND'}
 						submitComment={addNewComment}
-						image={currentUser.image.png}
+						image={imgUrl.preview}
 					/>
 					{buildCommentSection(commentData)}
 				</section>

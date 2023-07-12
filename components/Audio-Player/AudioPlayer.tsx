@@ -33,19 +33,18 @@ const AudioPlayer = () => {
 	const audioRef = useRef();
 	const progressBarRef = useRef();
 
+	const token =
+		'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
+
 	// function
 	const getATrack = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
-		await TrackService.getTrackById('64a802eb222f9174fecbef83', token)
+		await TrackService.getTrackById('64abd84772ef0e0f90bb9f8e', token)
 			.then(async resp => resp && (await setCurrentTrack(resp)))
 			.catch(err => console.log(err));
 	};
 
 	const getAudioFile = async () => {
 		if (currentTrack.trackFile[0]) {
-			const token =
-				'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
 			await TrackService.getAudioFileById(currentTrack.trackFile[0], token)
 				.then(
 					resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) })
@@ -62,8 +61,6 @@ const AudioPlayer = () => {
 
 	/** Gọi api để lấy ảnh */
 	const getAnImage = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODgwODE3NiwiZXhwIjoxNjkzOTkyMTc2fQ.I3kfNDp89UjIc_RXrN4YYcE1xJuSQzsMYZlkWuuihIM';
 		await ImageService.getById(`64a802e8222f9174fecbef7f`, token)
 			.then(resp => resp && setImgUrl({ preview: URL.createObjectURL(resp) }))
 			.catch(err => console.log(err));

@@ -4,7 +4,7 @@ export default class User {
 	id: string;
 	name: string;
 	email: string;
-	avatar: StaticImageData | string;
+	avatar: string;
 	isAdmin: boolean;
 	numberOfPlays: number;
 	numberOfFollowings: number;

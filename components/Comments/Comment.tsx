@@ -10,17 +10,30 @@ import {
 } from 'react-bootstrap-icons';
 import st from '../../data-test/avatars/image-amyrobson.png';
 import Image from 'next/image';
-import { useAppSelector } from '@/src/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
+import { player, setCurrentTime } from '@/src/redux/features/Player';
 
 export default function Comment(props: any) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [isVisible, setIsVisible] = useState(true);
 	const [showDeleteWarning, setShowDeleteWarning] = useState(false);
+	const dispatch = useAppDispatch();
 	const { user } = useAppSelector(_ => _);
+	const { player } = useAppSelector(_ => _);
 
 	function handleShowWarning() {
 		setShowDeleteWarning(true);
 	}
+	const formatTime = (time: any) => {
+		if (time && !isNaN(time)) {
+			const minutes = Math.floor(time / 60);
+			const formatMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
+			const seconds = Math.floor(time % 60);
+			const formatSeconds = seconds < 10 ? `0${seconds}` : `${seconds}`;
+			return `${formatMinutes}:${formatSeconds}`;
+		}
+		return '00:00';
+	};
 
 	/* function like() {
 		if (userScore === -1) return;
@@ -52,6 +65,10 @@ export default function Comment(props: any) {
 		setIsVisible(false);
 		setShowDeleteWarning(false);
 	}
+	function onClickToChangeCurrentTime(props: any) {
+		dispatch(setCurrentTime(props));
+		console.log(props);
+	}
 
 	function cancelDelete() {
 		setShowDeleteWarning(false);
@@ -79,7 +96,7 @@ export default function Comment(props: any) {
 			setIsReplying(true);
 		}; */
 
-		if (props.id === user.infor.id) {
+		if (props.id_user === user.infor.id) {
 			return (
 				<>
 					<button
@@ -92,7 +109,7 @@ export default function Comment(props: any) {
 				</>
 			);
 		}
-		return <span className="text-zinc-400">{props.createdAt}</span>;
+		return <>Con Cho</>;
 	}
 
 	return (
@@ -107,12 +124,27 @@ export default function Comment(props: any) {
 
 			{isVisible && (
 				<div>
-					<div className="flex flex-col bg-white m-3 px-4 py-3 md:pl-20 rounded-lg max-w-3xl min-h-[10rem] space-y-3 relative">
-						<div className="md:order-2 ">
-							<div className="flex justify-start items-center space-x-4">
-								<Image src={props.image.png} width={35} height={35} alt="pfp" />
+					<div className="flex flex-col bg-white rounded-lg">
+						<div>
+							<div className="flex justify-start items-center space-x-1">
+								{/* <Image src={props.image.png} width={35} height={35} alt="pfp" /> */}
 								<Username />
-								<span className="text-zinc-400"> at {props.atTimeInTrack}</span>
+								<span> at </span>
+								<span
+									className="text-zinc-400 hover:text-violet-600 cursor-pointer"
+									onClick={e => {
+										e.stopPropagation();
+										console.log(props.atTimeInTrack);
+										var y: number = +props.atTimeInTrack;
+										console.log(typeof y);
+										console.log(y);
+										dispatch(setCurrentTime(y));
+										console.log(typeof player.currentTime);
+									}}
+								>
+									{' '}
+									{formatTime(props.atTimeInTrack)}
+								</span>
 							</div>
 							<Content
 								setIsEditing={setIsEditing}
@@ -121,8 +153,8 @@ export default function Comment(props: any) {
 								isEditing={isEditing}
 							/>
 						</div>
-						<div className="flex my-3 md:order-1"></div>
-						<div className="flex space-x-4 absolute right-0 bottom-0 p-5 md:top-0 md:bottom-full ">
+						<div className="flex my-3"></div>
+						<div className="flex space-x-4 absolute right-0 bottom-0 p-5 ">
 							<CommentButtons />
 						</div>
 					</div>

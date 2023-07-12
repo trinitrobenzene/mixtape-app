@@ -29,7 +29,7 @@ const DisplayTrackInPlaybar = ({
 			<div className="flex gap-4">
 				<div>
 					{currentTrack.coverImage ? (
-						<Image
+						<img
 							src={player.coverImageUrl || ''}
 							alt="track cover"
 							width={50}

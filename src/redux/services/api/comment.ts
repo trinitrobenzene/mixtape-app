@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { tk } from '@/pages/api/auth/[...nextauth]';
 import CommentInTrack from '@/src/models/CommentInTrack';
+import CreateCommentTrack from '@/src/dto/create-comment.dto';
 
 const CommentService = {
 	/**
@@ -9,7 +10,7 @@ const CommentService = {
 	 */
 	getCommentsByIdTrack: async (id: string, token: string) => {
 		try {
-			const resp = await axios.get(`track/${id}`, {
+			const resp = await axios.get(`comment/get-by-trackId/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			});
 			return await resp.data;
@@ -17,13 +18,13 @@ const CommentService = {
 			console.log(error);
 		}
 	},
-	postComment: async (comment: CommentInTrack, token: string) => {
+	postComment: async (comment: CreateCommentTrack, token: string) => {
 		return await axios.post(
 			'comment',
 			{
 				content: comment.content,
 				atTimeInTrack: comment.atTimeInTrack,
-				id_track: comment.id_track,
+				track: comment.track,
 			},
 			{
 				headers: {

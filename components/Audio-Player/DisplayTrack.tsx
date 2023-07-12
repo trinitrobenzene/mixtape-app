@@ -14,25 +14,11 @@ const DisplayTrack = ({
 	handleNext,
 }: any) => {
 	const { player } = useAppSelector(_ => _);
-	/* const [audioUrl, setAudioUrl] = useState({ preview: '' }); */
 	const onLoadedMetadata = () => {
 		const seconds = audioRef.current.duration;
 		setDuration(seconds);
 		progressBarRef.current.max = seconds;
 	};
-	/* const getATrack = async () => {
-		const token =
-			'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlZEBtYWlsLmNvbSIsInN1YiI6IjY0OGVjMWFmYjEzOWQwYWRmZTFlMDY0MyIsImlhdCI6MTY4ODczMjA5OCwiZXhwIjoxNjkzOTE2MDk4fQ.PQhamKRL67JfZY05tCDVFIIAAVPM8_JvlK3hhEaO7II';
-		TrackService.getAudioFileById('64a804cd222f9174fecbef88', token)
-			.then(resp => resp && setAudioUrl({ preview: URL.createObjectURL(resp) }))
-			.catch(err => console.log(err));
-	};
- */
-	/* useEffect(() => {
-		return () => URL.revokeObjectURL(audioUrl.preview);
-	}, [audioUrl]);
-	console.log(audioUrl.preview);
-	console.log(currentTrack.fileTrack); */
 
 	return (
 		<div
@@ -54,13 +40,12 @@ const DisplayTrack = ({
 					}}
 					className="w-[auto] h-[auto] cursor-pointer rounded-sm"
 				>
-					<Image
+					<img
 						src={player.coverImageUrl}
-						alt="track cover"
-						quality={100}
-						style={{ objectFit: 'fill' }}
 						width={200}
 						height={400}
+						alt="track cover"
+						style={{ objectFit: 'fill' }}
 					/>
 				</div>
 

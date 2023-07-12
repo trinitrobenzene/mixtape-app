@@ -2,8 +2,8 @@ import Comment from './Comment';
 import React, { useState } from 'react';
 
 export default function CommentBlock(props: any) {
-	const [replies, setReplies] = useState(props.comment.replies);
-	const [replyCount, setReplyCount] = useState(0);
+	// const [replies, setReplies] = useState(props.comment.replies);
+	// const [replyCount, setReplyCount] = useState(0);
 
 	function buildComment(comment: any) {
 		const userData = comment.user;
