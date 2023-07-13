@@ -26,6 +26,16 @@ const UserService = {
 			}
 		);
 	},
+	getUserById: async (id: string, token: string) => {
+		try {
+			const resp = await axios.get(`user/get-by-id/${id}`, {
+				headers: { Authorization: `Bearer ${token}` },
+			});
+			return await resp.data;
+		} catch (error) {
+			console.log(error);
+		}
+	},
 
 	/**
 	 * GET: http://localhost:4000/user

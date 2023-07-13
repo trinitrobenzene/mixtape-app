@@ -24,7 +24,7 @@ export default function RootLayout({ children, session }: IProps) {
 	return (
 		<html lang="en">
 			<Providers>
-				<body>
+				<body suppressHydrationWarning={true}>
 					<SessionProvider session={session}>
 						<Header />
 						<div className="relative">
